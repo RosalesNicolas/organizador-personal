@@ -8,6 +8,7 @@
   query,
   serverTimestamp,
   updateDoc,
+  writeBatch,
 } from "firebase/firestore";
 import { auth, db } from "../../firebase/config";
 import type {
@@ -111,4 +112,23 @@ export async function deleteExercise(
   await deleteDoc(
     getExerciseReference(routineId, exerciseId),
   );
+}
+
+export async function saveExerciseOrder(
+  routineId: string,
+  exercises: GymExercise[],
+) {
+  const batch = writeBatch(db);
+
+  exercises.forEach((exercise, index) => {
+    batch.update(
+      getExerciseReference(routineId, exercise.id),
+      {
+        order: index + 1,
+        updatedAt: serverTimestamp(),
+      },
+    );
+  });
+
+  await batch.commit();
 }

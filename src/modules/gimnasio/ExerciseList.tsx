@@ -3,17 +3,23 @@
 type ExerciseListProps = {
   exercises: GymExercise[];
   workingId: string | null;
+  editingExerciseId: string | null;
   locked: boolean;
   onEdit: (exercise: GymExercise) => void;
   onDelete: (exerciseId: string) => Promise<void>;
+  onMoveUp: (exerciseId: string) => Promise<void>;
+  onMoveDown: (exerciseId: string) => Promise<void>;
 };
 
 export function ExerciseList({
   exercises,
   workingId,
+  editingExerciseId,
   locked,
   onEdit,
   onDelete,
+  onMoveUp,
+  onMoveDown,
 }: ExerciseListProps) {
   if (exercises.length === 0) {
     return (
@@ -27,13 +33,24 @@ export function ExerciseList({
     <section className="exercise-list">
       {exercises.map((exercise, index) => {
         const isWorking = workingId === exercise.id;
-        const actionsDisabled = isWorking || locked;
+        const isEditing =
+          editingExerciseId === exercise.id;
+
+        const anotherExerciseIsEditing =
+          editingExerciseId !== null &&
+          editingExerciseId !== exercise.id;
+
+        const actionsDisabled =
+          isWorking ||
+          locked ||
+          isEditing ||
+          anotherExerciseIsEditing;
 
         return (
           <article
             className={
-              locked
-                ? "exercise-card exercise-card--locked"
+              isEditing
+                ? "exercise-card exercise-card--editing"
                 : "exercise-card"
             }
             key={exercise.id}
@@ -45,8 +62,10 @@ export function ExerciseList({
 
               <div>
                 <h2>{exercise.name}</h2>
+
                 <p>
-                  {exercise.sets} series × {exercise.reps} repeticiones
+                  {exercise.sets} series ×{" "}
+                  {exercise.reps} repeticiones
                 </p>
               </div>
             </div>
@@ -59,8 +78,39 @@ export function ExerciseList({
 
               <div>
                 <span>Descanso</span>
-                <strong>{exercise.restSeconds} s</strong>
+                <strong>
+                  {exercise.restSeconds} s
+                </strong>
               </div>
+            </div>
+
+            <div className="exercise-order-actions">
+              <button
+                type="button"
+                className="action-button"
+                disabled={
+                  actionsDisabled || index === 0
+                }
+                onClick={() =>
+                  void onMoveUp(exercise.id)
+                }
+              >
+                ↑ Subir
+              </button>
+
+              <button
+                type="button"
+                className="action-button"
+                disabled={
+                  actionsDisabled ||
+                  index === exercises.length - 1
+                }
+                onClick={() =>
+                  void onMoveDown(exercise.id)
+                }
+              >
+                ↓ Bajar
+              </button>
             </div>
 
             <div className="routine-card__actions">
@@ -70,22 +120,24 @@ export function ExerciseList({
                 disabled={actionsDisabled}
                 onClick={() => onEdit(exercise)}
               >
-                Editar
+                {isEditing ? "Editando" : "Editar"}
               </button>
 
               <button
                 type="button"
                 className="action-button action-button--danger"
                 disabled={actionsDisabled}
-                onClick={() => void onDelete(exercise.id)}
+                onClick={() =>
+                  void onDelete(exercise.id)
+                }
               >
                 Eliminar
               </button>
             </div>
 
-            {locked && (
-              <p className="exercise-card__locked-message">
-                Este ejercicio no puede modificarse durante el entrenamiento.
+            {isEditing && (
+              <p className="exercise-card__editing-message">
+                Terminá o cancelá la edición para realizar otra acción.
               </p>
             )}
           </article>

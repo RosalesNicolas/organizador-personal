@@ -620,109 +620,110 @@ export function GymWorkoutPage() {
         </div>
       </header>
 
-      <section className="rest-timer">
-        <div className="rest-timer__main">
-          <div>
-            <span className="rest-timer__label">
-              Descanso
-            </span>
+      <div className="workout-sticky-panel">
+        <section className="rest-timer">
+          <div className="rest-timer__main">
+            <div>
+              <span className="rest-timer__label">
+                Descanso
+              </span>
 
-            <strong className="rest-timer__time">
-              {formatRestTime(restRemaining)}
+              <strong className="rest-timer__time">
+                {formatRestTime(restRemaining)}
+              </strong>
+            </div>
+
+            <div className="rest-timer__adjustment">
+              <button
+                type="button"
+                onClick={() => adjustRestTimer(-5)}
+                disabled={
+                  finishing ||
+                  restDuration <= MIN_REST_SECONDS
+                }
+              >
+                −5 s
+              </button>
+
+              <span>{restDuration} s</span>
+
+              <button
+                type="button"
+                onClick={() => adjustRestTimer(5)}
+                disabled={
+                  finishing ||
+                  restDuration >= MAX_REST_SECONDS
+                }
+              >
+                +5 s
+              </button>
+            </div>
+          </div>
+
+          <div className="rest-timer__controls">
+            {restRunning ? (
+              <button
+                type="button"
+                onClick={pauseRestTimer}
+                disabled={finishing}
+              >
+                Pausar
+              </button>
+            ) : (
+              <button
+                type="button"
+                onClick={resumeRestTimer}
+                disabled={finishing}
+              >
+                {restRemaining === restDuration
+                  ? "Iniciar"
+                  : "Continuar"}
+              </button>
+            )}
+
+            <button
+              type="button"
+              onClick={resetRestTimer}
+              disabled={finishing}
+            >
+              Reiniciar
+            </button>
+
+            <button
+              type="button"
+              onClick={skipRestTimer}
+              disabled={finishing}
+            >
+              Omitir
+            </button>
+          </div>
+        </section>
+
+        <section className="workout-progress">
+          <div className="workout-progress__header">
+            <span>Progreso total</span>
+
+            <strong>
+              {progress.completedSets} de{" "}
+              {progress.totalSets} series
             </strong>
           </div>
 
-          <div className="rest-timer__adjustment">
-            <button
-              type="button"
-              onClick={() => adjustRestTimer(-5)}
-              disabled={
-                finishing ||
-                restDuration <= MIN_REST_SECONDS
-              }
-            >
-              −5 s
-            </button>
-
-            <span>{restDuration} s</span>
-
-            <button
-              type="button"
-              onClick={() => adjustRestTimer(5)}
-              disabled={
-                finishing ||
-                restDuration >= MAX_REST_SECONDS
-              }
-            >
-              +5 s
-            </button>
+          <div className="workout-progress__track">
+            <div
+              className="workout-progress__bar"
+              style={{
+                width: `${progress.percentage}%`,
+              }}
+            />
           </div>
-        </div>
 
-        <div className="rest-timer__controls">
-          {restRunning ? (
-            <button
-              type="button"
-              onClick={pauseRestTimer}
-              disabled={finishing}
-            >
-              Pausar
-            </button>
-          ) : (
-            <button
-              type="button"
-              onClick={resumeRestTimer}
-              disabled={finishing}
-            >
-              {restRemaining === restDuration
-                ? "Iniciar"
-                : "Continuar"}
-            </button>
-          )}
-
-          <button
-            type="button"
-            onClick={resetRestTimer}
-            disabled={finishing}
-          >
-            Reiniciar
-          </button>
-
-          <button
-            type="button"
-            onClick={skipRestTimer}
-            disabled={finishing}
-          >
-            Omitir
-          </button>
-        </div>
-      </section>
-
-      <section className="workout-progress">
-        <div className="workout-progress__header">
-          <span>Progreso total</span>
-
-          <strong>
-            {progress.completedSets} de{" "}
-            {progress.totalSets} series
-          </strong>
-        </div>
-
-        <div className="workout-progress__track">
-          <div
-            className="workout-progress__bar"
-            style={{
-              width: `${progress.percentage}%`,
-            }}
-          />
-        </div>
-
-        <span className="workout-progress__percentage">
-          {progress.percentage}%
-        </span>
-      </section>
-
-      {exercises.length === 0 ? (
+          <span className="workout-progress__percentage">
+            {progress.percentage}%
+          </span>
+        </section>
+      </div>
+    {exercises.length === 0 ? (
         <section className="empty-state">
           <h2>Esta rutina no tiene ejercicios</h2>
 
@@ -910,3 +911,4 @@ export function GymWorkoutPage() {
     </section>
   );
 }
+

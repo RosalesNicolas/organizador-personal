@@ -24,7 +24,7 @@ type RoutineListProps = {
   workingId: string | null;
   activeRoutineId: string | null;
   editingRoutineId: string | null;
-  onTrain: (routine: GymRoutine) => void;
+  onTrain: (routine: GymRoutine) => Promise<void>;
   onEdit: (routine: GymRoutine) => void;
   onArchive: (routineId: string) => Promise<void>;
   onRestore: (routineId: string) => Promise<void>;
@@ -103,7 +103,7 @@ export function RoutineList({
               <button
                 type="button"
                 className="train-button"
-                onClick={() => onTrain(routine)}
+                onClick={() => void onTrain(routine)}
                 disabled={isLocked}
               >
                 {isActive
@@ -193,5 +193,6 @@ export function RoutineList({
     </section>
   );
 }
+
 
 

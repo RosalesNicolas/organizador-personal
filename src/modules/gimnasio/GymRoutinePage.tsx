@@ -5,6 +5,7 @@ import {
   createExercise,
   deleteExercise,
   getExercises,
+  saveExerciseOrder,
   updateExercise,
 } from "./exercisesRepository";
 import { ExerciseForm } from "./ExerciseForm";
@@ -19,19 +20,25 @@ import type {
 export function GymRoutinePage() {
   const { routineId } = useParams();
 
-  const [routine, setRoutine] = useState<GymRoutine | null>(null);
-  const [exercises, setExercises] = useState<GymExercise[]>([]);
+  const [routine, setRoutine] =
+    useState<GymRoutine | null>(null);
+  const [exercises, setExercises] =
+    useState<GymExercise[]>([]);
   const [exerciseToEdit, setExerciseToEdit] =
     useState<GymExercise | null>(null);
   const [showForm, setShowForm] = useState(false);
-  const [loading, setLoading] = useState(Boolean(routineId));
+  const [loading, setLoading] =
+    useState(Boolean(routineId));
   const [saving, setSaving] = useState(false);
-  const [workingId, setWorkingId] = useState<string | null>(null);
+  const [workingId, setWorkingId] =
+    useState<string | null>(null);
   const [error, setError] = useState(
     routineId ? "" : "No se indicó una rutina.",
   );
 
-  const formContainerRef = useRef<HTMLDivElement | null>(null);
+  const formContainerRef =
+    useRef<HTMLDivElement | null>(null);
+
   const routineIsActive = Boolean(
     routineId && isRoutineActive(routineId),
   );
@@ -55,9 +62,6 @@ export function GymRoutinePage() {
 
   function handleAdd() {
     if (routineIsActive) {
-      setError(
-        "No podés agregar ejercicios mientras la rutina está activa.",
-      );
       return;
     }
 
@@ -69,9 +73,6 @@ export function GymRoutinePage() {
 
   function handleEdit(exercise: GymExercise) {
     if (routineIsActive) {
-      setError(
-        "No podés editar ejercicios mientras la rutina está activa.",
-      );
       return;
     }
 
@@ -107,7 +108,9 @@ export function GymRoutinePage() {
         console.error(loadError);
 
         if (!cancelled) {
-          setError("No se pudo cargar la rutina.");
+          setError(
+            "No se pudo cargar la rutina.",
+          );
         }
       })
       .finally(() => {
@@ -121,11 +124,10 @@ export function GymRoutinePage() {
     };
   }, [routineId]);
 
-  async function handleSubmit(data: ExerciseFormData) {
+  async function handleSubmit(
+    data: ExerciseFormData,
+  ) {
     if (!routineId || routineIsActive) {
-      setError(
-        "No podés modificar ejercicios mientras la rutina está activa.",
-      );
       return;
     }
 
@@ -152,7 +154,9 @@ export function GymRoutinePage() {
       setShowForm(false);
     } catch (saveError) {
       console.error(saveError);
-      setError("No se pudo guardar el ejercicio.");
+      setError(
+        "No se pudo guardar el ejercicio.",
+      );
       throw saveError;
     } finally {
       setSaving(false);
@@ -160,14 +164,7 @@ export function GymRoutinePage() {
   }
 
   async function handleDelete(exerciseId: string) {
-    if (!routineId) {
-      return;
-    }
-
-    if (routineIsActive) {
-      setError(
-        "No podés eliminar ejercicios mientras la rutina está activa.",
-      );
+    if (!routineId || routineIsActive) {
       return;
     }
 
@@ -184,10 +181,82 @@ export function GymRoutinePage() {
       setError("");
 
       await deleteExercise(routineId, exerciseId);
+
+      const remainingExercises = exercises.filter(
+        (exercise) => exercise.id !== exerciseId,
+      );
+
+      await saveExerciseOrder(
+        routineId,
+        remainingExercises,
+      );
+
       await reloadExercises();
     } catch (deleteError) {
       console.error(deleteError);
-      setError("No se pudo eliminar el ejercicio.");
+      setError(
+        "No se pudo eliminar el ejercicio.",
+      );
+    } finally {
+      setWorkingId(null);
+    }
+  }
+
+  async function moveExercise(
+    exerciseId: string,
+    direction: -1 | 1,
+  ) {
+    if (
+      !routineId ||
+      routineIsActive ||
+      exerciseToEdit
+    ) {
+      return;
+    }
+
+    const currentIndex = exercises.findIndex(
+      (exercise) => exercise.id === exerciseId,
+    );
+
+    const targetIndex = currentIndex + direction;
+
+    if (
+      currentIndex < 0 ||
+      targetIndex < 0 ||
+      targetIndex >= exercises.length
+    ) {
+      return;
+    }
+
+    const reorderedExercises = [...exercises];
+
+    [
+      reorderedExercises[currentIndex],
+      reorderedExercises[targetIndex],
+    ] = [
+      reorderedExercises[targetIndex],
+      reorderedExercises[currentIndex],
+    ];
+
+    try {
+      setWorkingId(exerciseId);
+      setError("");
+
+      setExercises(reorderedExercises);
+
+      await saveExerciseOrder(
+        routineId,
+        reorderedExercises,
+      );
+
+      await reloadExercises();
+    } catch (moveError) {
+      console.error(moveError);
+      setError(
+        "No se pudo cambiar el orden.",
+      );
+
+      await reloadExercises();
     } finally {
       setWorkingId(null);
     }
@@ -198,14 +267,22 @@ export function GymRoutinePage() {
   }
 
   if (loading) {
-    return <p className="status-message">Cargando rutina...</p>;
+    return (
+      <p className="status-message">
+        Cargando rutina...
+      </p>
+    );
   }
 
-  if (!routine || error && !routine) {
+  if (!routine || (error && !routine)) {
     return (
       <section className="empty-state">
         <h1>Rutina no encontrada</h1>
-        <p>{error || "La rutina solicitada no existe."}</p>
+
+        <p>
+          {error ||
+            "La rutina solicitada no existe."}
+        </p>
 
         <Link className="text-link" to="/gimnasio">
           Volver a Gimnasio
@@ -217,7 +294,10 @@ export function GymRoutinePage() {
   return (
     <section className="gym-routine-page">
       <div className="gym-routine-page__top">
-        <Link className="back-link back-link--gym" to="/gimnasio">
+        <Link
+          className="back-link back-link--gym"
+          to="/gimnasio"
+        >
           ← Volver a rutinas
         </Link>
 
@@ -225,7 +305,7 @@ export function GymRoutinePage() {
           type="button"
           className="inline-add-button inline-add-button--gym"
           onClick={handleAdd}
-          disabled={routineIsActive}
+          disabled={Boolean(exerciseToEdit)}
         >
           + Agregar ejercicio
         </button>
@@ -233,37 +313,54 @@ export function GymRoutinePage() {
 
       <header className="module-header module-header--gym">
         <p className="module-header__eyebrow module-header__eyebrow--gym">
-          {routineIsActive ? "Entrenamiento activo" : "Rutina"}
+          Rutina
         </p>
 
         <h1>{routine.name}</h1>
 
-        {routine.description && <p>{routine.description}</p>}
-      </header>
+        {routine.description && (
+          <p>{routine.description}</p>
+        )}
 
-      {routineIsActive && (
-        <section className="gym-lock-notice">
-          Esta rutina está activa. Cerrá el entrenamiento para modificar
-          sus ejercicios.
-        </section>
-      )}
+        <p className="gym-routine-page__count">
+          {exercises.length}{" "}
+          {exercises.length === 1
+            ? "ejercicio"
+            : "ejercicios"}
+        </p>
+      </header>
 
       <ExerciseList
         exercises={exercises}
         workingId={workingId}
-        locked={routineIsActive}
+        editingExerciseId={
+          exerciseToEdit?.id ?? null
+        }
+        locked={false}
         onEdit={handleEdit}
         onDelete={handleDelete}
+        onMoveUp={(exerciseId) =>
+          moveExercise(exerciseId, -1)
+        }
+        onMoveDown={(exerciseId) =>
+          moveExercise(exerciseId, 1)
+        }
       />
 
-      {showForm && !routineIsActive && (
+      {showForm && (
         <div
           ref={formContainerRef}
           className="item-form-container"
-          key={exerciseToEdit?.id ?? "new-exercise-container"}
+          key={
+            exerciseToEdit?.id ??
+            "new-exercise-container"
+          }
         >
           <ExerciseForm
-            key={exerciseToEdit?.id ?? "new-exercise"}
+            key={
+              exerciseToEdit?.id ??
+              "new-exercise"
+            }
             exerciseToEdit={exerciseToEdit}
             saving={saving}
             onSubmit={handleSubmit}
@@ -272,9 +369,9 @@ export function GymRoutinePage() {
         </div>
       )}
 
-      {error && <p className="form-error">{error}</p>}
+      {error && (
+        <p className="form-error">{error}</p>
+      )}
     </section>
   );
 }
-
-

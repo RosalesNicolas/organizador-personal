@@ -1,5 +1,6 @@
 ﻿import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
+import { getExercises } from "./exercisesRepository";
 import {
   clearActiveRoutineId,
   getActiveRoutineId,
@@ -97,18 +98,48 @@ export function GimnasioPage() {
     setShowForm(false);
   }
 
-  function handleStartWorkout(routine: GymRoutine) {
-    if (selectedRoutine && selectedRoutine.id !== routine.id) {
+  async function handleStartWorkout(
+    routine: GymRoutine,
+  ) {
+    if (
+      selectedRoutine &&
+      selectedRoutine.id !== routine.id
+    ) {
       setError(
         "Ya existe otro entrenamiento activo.",
       );
       return;
     }
 
-    setActiveRoutineId(routine.id);
-    setSelectedRoutine(routine);
+    try {
+      setWorkingId(routine.id);
+      setError("");
 
-    navigate(`/gimnasio/entrenamiento/${routine.id}`);
+      const exercises = await getExercises(
+        routine.id,
+      );
+
+      if (exercises.length === 0) {
+        setError(
+          "Esta rutina no tiene ejercicios. Configurala antes de comenzar.",
+        );
+        return;
+      }
+
+      setActiveRoutineId(routine.id);
+      setSelectedRoutine(routine);
+
+      navigate(
+        `/gimnasio/entrenamiento/${routine.id}`,
+      );
+    } catch (startError) {
+      console.error(startError);
+      setError(
+        "No se pudo iniciar el entrenamiento.",
+      );
+    } finally {
+      setWorkingId(null);
+    }
   }
 
   function handleContinueWorkout() {
@@ -351,3 +382,5 @@ export function GimnasioPage() {
     </section>
   );
 }
+
+
