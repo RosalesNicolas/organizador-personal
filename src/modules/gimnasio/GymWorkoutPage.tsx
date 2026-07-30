@@ -158,18 +158,7 @@ export function GymWorkoutPage() {
   }, []);
 
   const playRestFinishedCue = useCallback(() => {
-    try {
-      if ("vibrate" in navigator) {
-        navigator.vibrate(250);
-      }
-    } catch (vibrationError) {
-      console.debug(
-        "La vibración no está disponible.",
-        vibrationError,
-      );
-    }
-
-    try {
+try {
       const audioContext =
         audioContextRef.current ?? new AudioContext();
 
@@ -551,75 +540,6 @@ export function GymWorkoutPage() {
     saveWorkoutSession(updatedSession);
   }
 
-  function handleTestSound() {
-    prepareAudio();
-
-    window.setTimeout(() => {
-      try {
-        const audioContext =
-          audioContextRef.current ?? new AudioContext();
-
-        audioContextRef.current = audioContext;
-
-        void audioContext.resume().then(() => {
-          const oscillator =
-            audioContext.createOscillator();
-          const gain = audioContext.createGain();
-          const now = audioContext.currentTime;
-
-          oscillator.type = "sine";
-          oscillator.frequency.setValueAtTime(
-            660,
-            now,
-          );
-
-          gain.gain.setValueAtTime(0.0001, now);
-          gain.gain.exponentialRampToValueAtTime(
-            0.04,
-            now + 0.02,
-          );
-          gain.gain.exponentialRampToValueAtTime(
-            0.0001,
-            now + 0.25,
-          );
-
-          oscillator.connect(gain);
-          gain.connect(audioContext.destination);
-
-          oscillator.start(now);
-          oscillator.stop(now + 0.28);
-        });
-      } catch (soundError) {
-        console.error(
-          "Error al probar el sonido:",
-          soundError,
-        );
-      }
-    }, 50);
-  }
-
-  function handleTestVibration() {
-    try {
-      if ("vibrate" in navigator) {
-        const vibrationStarted =
-          navigator.vibrate(400);
-
-        console.info(
-          "Resultado de navigator.vibrate:",
-          vibrationStarted,
-        );
-      } else {
-        console.info(
-          "Este navegador no ofrece navigator.vibrate.",
-        );
-      }
-    } catch (vibrationError) {
-      console.error(
-        "Error al probar la vibración:",
-        vibrationError,
-      );
-    }
-  }
   function handleManualFinish() {
     const confirmed = window.confirm(
       "¿Finalizar el entrenamiento actual?",
@@ -792,26 +712,7 @@ export function GymWorkoutPage() {
           </span>
         </section>
       </div>
-      <section className="mobile-feedback-test">
-        <span>Prueba del teléfono</span>
-
-        <div>
-          <button
-            type="button"
-            onClick={handleTestSound}
-          >
-            Probar sonido
-          </button>
-
-          <button
-            type="button"
-            onClick={handleTestVibration}
-          >
-            Probar vibración
-          </button>
-        </div>
-      </section>
-    {exercises.length === 0 ? (
+{exercises.length === 0 ? (
         <section className="empty-state">
           <h2>Esta rutina no tiene ejercicios</h2>
 
@@ -999,6 +900,9 @@ export function GymWorkoutPage() {
     </section>
   );
 }
+
+
+
 
 
 
