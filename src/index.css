@@ -1960,3 +1960,35 @@ select {
     padding: 6px;
   }
 }
+
+.mobile-feedback-test {
+  padding: 13px;
+  border: 1px dashed rgba(34, 197, 94, 0.4);
+  border-radius: 12px;
+  background: rgba(22, 163, 74, 0.06);
+}
+
+.mobile-feedback-test > span {
+  display: block;
+  margin-bottom: 9px;
+  color: #86efac;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.mobile-feedback-test > div {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.mobile-feedback-test button {
+  min-height: 40px;
+  border: 1px solid rgba(34, 197, 94, 0.38);
+  border-radius: 9px;
+  background: rgba(22, 163, 74, 0.13);
+  color: #bbf7d0;
+  font-weight: 750;
+  cursor: pointer;
+}
