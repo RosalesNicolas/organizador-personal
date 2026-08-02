@@ -1962,3 +1962,508 @@ select {
 }
 
 
+
+/* Piero: identidad visual naranja */
+
+.page--piero .subject-card {
+  border-left-color: #f97316;
+}
+
+.page--piero .subject-card--link:hover {
+  border-color: rgba(249, 115, 22, 0.65);
+  border-left-color: #f97316;
+  box-shadow: 0 0 0 1px rgba(249, 115, 22, 0.12);
+}
+
+.page--piero .subject-card__code {
+  color: #fb923c;
+}
+
+.page--piero .subject-card__status {
+  background: rgba(249, 115, 22, 0.16);
+  color: #fdba74;
+}
+
+.page--piero .back-link {
+  color: #fb923c;
+}
+
+.page--piero .primary-button {
+  border-color: #f97316;
+  background: #f97316;
+  color: #ffffff;
+}
+
+.page--piero .primary-button:hover {
+  background: #ea580c;
+}
+
+.page--piero .module-header {
+  border-top-color: #f97316;
+}
+
+/* Gestión de cursos de Piero */
+
+.page--piero .subject-card {
+  display: block;
+  padding: 0;
+  overflow: hidden;
+}
+
+.subject-card__main-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 16px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.course-schedules {
+  display: grid;
+  gap: 4px;
+  margin-top: 12px;
+}
+
+.course-schedules small {
+  display: block;
+}
+
+.card-actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding: 10px 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.card-actions button {
+  min-height: 38px;
+  border: 1px solid rgba(249, 115, 22, 0.28);
+  border-radius: 8px;
+  background: rgba(249, 115, 22, 0.08);
+  color: #fdba74;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.card-actions button:disabled {
+  cursor: wait;
+  opacity: 0.55;
+}
+
+.card-actions .danger-button {
+  border-color: rgba(239, 68, 68, 0.3);
+  background: rgba(239, 68, 68, 0.08);
+  color: #fca5a5;
+}
+
+.page--piero .entity-form {
+  border-top-color: #f97316;
+}
+
+@media (max-width: 430px) {
+  .card-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Navegación activos / archivados de Piero */
+
+.archive-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin: 16px 0;
+  padding: 4px;
+  border: 1px solid rgba(249, 115, 22, 0.22);
+  border-radius: 11px;
+  background: rgba(249, 115, 22, 0.04);
+}
+
+.archive-tabs__button {
+  min-height: 42px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: #d1d5db;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.archive-tabs__button--active {
+  background: #f97316;
+  color: #ffffff;
+}
+
+.card-actions--archived {
+  grid-template-columns: 1fr 1.5fr;
+}
+
+.page--piero .subject-card__status {
+  white-space: nowrap;
+}
+
+.page--piero .card-actions:not(.card-actions--archived) {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.course-detail-schedules {
+  display: grid;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.course-detail-schedules small {
+  display: block;
+  line-height: 1.4;
+}
+
+/* Estudiantes de Piero */
+
+.student-list {
+  display: grid;
+  gap: 10px;
+}
+
+.student-card {
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: 3px solid #f97316;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.student-card__content {
+  padding: 14px;
+}
+
+.student-card__content h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.student-card__content p {
+  margin: 8px 0 0;
+  color: #d1d5db;
+  line-height: 1.45;
+}
+
+.student-card__empty-observation {
+  opacity: 0.6;
+  font-style: italic;
+}
+
+.student-card__actions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  padding: 10px 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.student-card__actions button {
+  min-height: 38px;
+  border: 1px solid rgba(249, 115, 22, 0.3);
+  border-radius: 8px;
+  background: rgba(249, 115, 22, 0.08);
+  color: #fdba74;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.student-card__actions .danger-button {
+  border-color: rgba(239, 68, 68, 0.3);
+  background: rgba(239, 68, 68, 0.08);
+  color: #fca5a5;
+}
+
+.student-card__actions button:disabled {
+  cursor: wait;
+  opacity: 0.55;
+}
+
+.student-form {
+  margin-bottom: 16px;
+  border-top-color: #f97316;
+}
+
+/* Calificaciones de Piero */
+
+.grade-column-manager {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 18px;
+  padding: 14px;
+  border: 1px solid rgba(249, 115, 22, 0.24);
+  border-radius: 12px;
+  background: rgba(249, 115, 22, 0.04);
+}
+
+.grade-column-manager h3 {
+  margin: 0;
+}
+
+.grade-column-manager__new {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+}
+
+.grade-column-list {
+  display: grid;
+  gap: 8px;
+}
+
+.grade-column-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 9px;
+}
+
+.grade-column-item > div {
+  display: flex;
+  gap: 6px;
+}
+
+.grade-column-item button {
+  min-height: 34px;
+  border: 1px solid rgba(249, 115, 22, 0.3);
+  border-radius: 7px;
+  background: rgba(249, 115, 22, 0.08);
+  color: #fdba74;
+  font-weight: 700;
+}
+
+.grade-column-item .danger-button {
+  border-color: rgba(239, 68, 68, 0.3);
+  background: rgba(239, 68, 68, 0.08);
+  color: #fca5a5;
+}
+
+.student-search {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 14px;
+  font-weight: 700;
+}
+
+.grades-table-wrapper {
+  overflow-x: auto;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+}
+
+.grades-table {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+}
+
+.grades-table th,
+.grades-table td {
+  padding: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: left;
+  vertical-align: top;
+}
+
+.grades-table th {
+  background: rgba(249, 115, 22, 0.1);
+  color: #fdba74;
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+.grades-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.grade-input {
+  width: 78px;
+  min-height: 36px;
+  text-align: center;
+}
+
+.grades-table td small {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.68rem;
+  opacity: 0.65;
+}
+
+.grades-table__observation {
+  min-width: 180px;
+  max-width: 260px;
+  white-space: normal;
+}
+
+.grades-table__actions {
+  display: grid;
+  gap: 6px;
+  min-width: 95px;
+}
+
+.grades-table__actions button {
+  min-height: 34px;
+  border: 1px solid rgba(249, 115, 22, 0.3);
+  border-radius: 7px;
+  background: rgba(249, 115, 22, 0.08);
+  color: #fdba74;
+  font-weight: 700;
+}
+
+.grades-table__actions .danger-button {
+  border-color: rgba(239, 68, 68, 0.3);
+  background: rgba(239, 68, 68, 0.08);
+  color: #fca5a5;
+}
+
+@media (max-width: 600px) {
+  .grade-column-manager__new {
+    grid-template-columns: 1fr;
+  }
+
+  .grade-column-item {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .grade-column-item > div {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Acciones principales del curso de Piero */
+
+.piero-course-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.piero-course-actions .primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  text-decoration: none;
+}
+
+.grade-columns-page {
+  display: grid;
+  gap: 16px;
+}
+
+.grade-column-create {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+}
+
+@media (max-width: 600px) {
+  .piero-course-actions {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+
+  .grade-column-create {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Importación de estudiantes */
+
+.student-import {
+  display: grid;
+  gap: 14px;
+  margin-bottom: 18px;
+  padding: 14px;
+  border: 1px solid rgba(249, 115, 22, 0.3);
+  border-radius: 12px;
+  background: rgba(249, 115, 22, 0.04);
+}
+
+.student-import__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.student-import__header h3,
+.student-import__header p {
+  margin: 0;
+}
+
+.student-import__header p {
+  margin-top: 5px;
+  color: #d1d5db;
+}
+
+.student-import__filename {
+  margin: 0;
+  font-weight: 700;
+}
+
+.student-import__summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.student-import__summary span {
+  padding: 6px 9px;
+  border-radius: 999px;
+  background: rgba(249, 115, 22, 0.13);
+  color: #fdba74;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.student-import__table-wrapper {
+  overflow-x: auto;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 9px;
+}
+
+.student-import__table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+}
+
+.student-import__table th,
+.student-import__table td {
+  padding: 9px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: left;
+}
+
+.student-import__table th {
+  background: rgba(249, 115, 22, 0.1);
+  color: #fdba74;
+}
+
+.student-import__errors {
+  padding: 10px;
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  border-radius: 9px;
+  background: rgba(239, 68, 68, 0.05);
+}
+
+.student-import__errors h4 {
+  margin: 0 0 8px;
+  color: #fca5a5;
+}
+
+.student-import__errors p {
+  margin: 4px 0;
+}

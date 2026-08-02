@@ -4,6 +4,8 @@ import { GimnasioPage } from "./modules/gimnasio/GimnasioPage";
 import { GymRoutinePage } from "./modules/gimnasio/GymRoutinePage";
 import { GymWorkoutPage } from "./modules/gimnasio/GymWorkoutPage";
 import { InicioPage } from "./modules/inicio/InicioPage";
+import { PieroCoursePage } from "./modules/piero/PieroCoursePage";
+import { PieroGradeColumnsPage } from "./modules/piero/PieroGradeColumnsPage";
 import { PieroPage } from "./modules/piero/PieroPage";
 import { UtnPage } from "./modules/utn/UtnPage";
 import { UtnSubjectPage } from "./modules/utn/UtnSubjectPage";
@@ -19,6 +21,15 @@ function App() {
             <Route path="/" element={<InicioPage />} />
             <Route path="/cjcc" element={<CjccPage />} />
             <Route path="/piero" element={<PieroPage />} />
+            <Route
+              path="/piero/:courseId/columnas"
+              element={<PieroGradeColumnsPage />}
+            />
+
+            <Route
+              path="/piero/:courseId"
+              element={<PieroCoursePage />}
+            />
 
             <Route path="/utn" element={<UtnPage />} />
             <Route
@@ -48,3 +59,5 @@ function App() {
 }
 
 export default App;
+
+
