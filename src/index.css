@@ -4315,3 +4315,237 @@ select {
     width: 100%;
   }
 }
+
+/* Calendario mensual de Inicio */
+
+.home-calendar {
+  display: grid;
+  gap: 13px;
+  margin-bottom: 18px;
+  padding: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.home-calendar__header,
+.home-calendar__month-navigation,
+.home-calendar__selected > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.home-calendar__header h2,
+.home-calendar__header small,
+.home-calendar__selected h3 {
+  margin: 0;
+}
+
+.home-calendar__header small {
+  color: #93c5fd;
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.home-calendar__header h2 {
+  margin-top: 3px;
+}
+
+.home-calendar__header button,
+.home-calendar__month-navigation button {
+  min-width: 38px;
+  min-height: 36px;
+  padding: 6px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.17);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.055);
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.home-calendar__month-navigation strong {
+  text-align: center;
+}
+
+.home-calendar__weekdays,
+.home-calendar__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.home-calendar__weekdays span {
+  color: #9ca3af;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.home-calendar__day,
+.home-calendar__empty-day {
+  min-width: 0;
+  min-height: 45px;
+}
+
+.home-calendar__day {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 4px;
+  padding: 4px 2px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.035);
+  color: #e5e7eb;
+  font: inherit;
+}
+
+.home-calendar__day:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.home-calendar__day--today {
+  border-color: rgba(255, 255, 255, 0.55);
+}
+
+.home-calendar__day--selected {
+  border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  font-weight: 900;
+}
+
+.home-calendar__day--high {
+  box-shadow: inset 0 0 0 1px
+    rgba(239, 68, 68, 0.38);
+}
+
+.home-calendar__dots {
+  display: flex;
+  justify-content: center;
+  gap: 3px;
+  min-height: 6px;
+}
+
+.home-calendar__dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+}
+
+.home-calendar__dot--cjcc {
+  background: #ef4444;
+}
+
+.home-calendar__dot--piero {
+  background: #f97316;
+}
+
+.home-calendar__dot--utn {
+  background: #3b82f6;
+}
+
+.home-calendar__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  color: #d1d5db;
+  font-size: 0.75rem;
+}
+
+.home-calendar__legend span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.home-calendar__selected {
+  display: grid;
+  gap: 10px;
+  padding-top: 12px;
+  border-top: 1px solid
+    rgba(255, 255, 255, 0.09);
+}
+
+.home-calendar__selected header span {
+  color: #9ca3af;
+  font-size: 0.77rem;
+}
+
+.home-calendar__selected > p {
+  margin: 0;
+  color: #bfc3cc;
+}
+
+.home-calendar__task-list {
+  display: grid;
+  gap: 7px;
+}
+
+.home-calendar__task {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 9px;
+  padding: 10px;
+  border-left: 3px solid #9ca3af;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  color: inherit;
+  text-decoration: none;
+}
+
+.home-calendar__task--cjcc {
+  border-left-color: #ef4444;
+}
+
+.home-calendar__task--piero {
+  border-left-color: #f97316;
+}
+
+.home-calendar__task--utn {
+  border-left-color: #3b82f6;
+}
+
+.home-calendar__task > div {
+  display: grid;
+  gap: 2px;
+}
+
+.home-calendar__task small {
+  color: #9ca3af;
+}
+
+.home-calendar__task > span {
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: rgba(239, 68, 68, 0.14);
+  color: #fca5a5;
+  font-size: 0.7rem;
+  font-weight: 900;
+}
+
+@media (max-width: 420px) {
+  .home-calendar {
+    padding: 12px;
+  }
+
+  .home-calendar__day,
+  .home-calendar__empty-day {
+    min-height: 40px;
+  }
+
+  .home-calendar__header {
+    align-items: flex-start;
+  }
+
+  .home-calendar__selected > header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 3px;
+  }
+}
