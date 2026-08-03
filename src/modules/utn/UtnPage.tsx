@@ -77,6 +77,15 @@ export function UtnPage() {
         <p>Materias, parciales, entregas y notas personales.</p>
       </header>
 
+      <div className="utn-module-actions">
+        <Link
+          className="primary-button primary-button--utn"
+          to="/pendientes?modulo=utn"
+        >
+          Ver pendientes de UTN
+        </Link>
+      </div>
+
       {loading && <p className="status-message">Cargando materias...</p>}
 
       {!loading && subjects.length === 0 && (
@@ -122,3 +131,4 @@ export function UtnPage() {
     </section>
   );
 }
+

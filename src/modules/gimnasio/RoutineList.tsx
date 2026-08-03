@@ -1,4 +1,5 @@
-﻿import { Link } from "react-router";
+﻿import type { ReactNode } from "react";
+import { Link } from "react-router";
 import type { GymRoutine } from "./types";
 
 function formatLastWorkout(value: unknown) {
@@ -18,12 +19,14 @@ function formatLastWorkout(value: unknown) {
     timeStyle: "short",
   }).format(date);
 }
+
 type RoutineListProps = {
   routines: GymRoutine[];
   showArchived: boolean;
   workingId: string | null;
   activeRoutineId: string | null;
   editingRoutineId: string | null;
+  editForm: ReactNode;
   onTrain: (routine: GymRoutine) => Promise<void>;
   onEdit: (routine: GymRoutine) => void;
   onArchive: (routineId: string) => Promise<void>;
@@ -37,6 +40,7 @@ export function RoutineList({
   workingId,
   activeRoutineId,
   editingRoutineId,
+  editForm,
   onTrain,
   onEdit,
   onArchive,
@@ -62,13 +66,25 @@ export function RoutineList({
   return (
     <section className="routine-list">
       {visibleRoutines.map((routine) => {
-        const isWorking = workingId === routine.id;
-        const isActive = activeRoutineId === routine.id;
-        const isEditing = editingRoutineId === routine.id;
-        const isLocked = isWorking || isActive || isEditing;
+        const isWorking =
+          workingId === routine.id;
+
+        const isActive =
+          activeRoutineId === routine.id;
+
+        const isEditing =
+          editingRoutineId === routine.id;
+
+        const isLocked =
+          isWorking || isActive || isEditing;
+
+        const lastWorkout = formatLastWorkout(
+          routine.lastCompletedAt,
+        );
 
         return (
           <article
+            id={`routine-card-${routine.id}`}
             className={
               isActive
                 ? "routine-card routine-card--active"
@@ -89,12 +105,13 @@ export function RoutineList({
 
               <h2>{routine.name}</h2>
 
-              {routine.description && <p>{routine.description}</p>}
+              {routine.description && (
+                <p>{routine.description}</p>
+              )}
 
-              {formatLastWorkout(routine.lastCompletedAt) && (
+              {lastWorkout && (
                 <p className="routine-card__last-workout">
-                  Último realizado:{" "}
-                  {formatLastWorkout(routine.lastCompletedAt)}
+                  Último realizado: {lastWorkout}
                 </p>
               )}
             </div>
@@ -103,7 +120,9 @@ export function RoutineList({
               <button
                 type="button"
                 className="train-button"
-                onClick={() => void onTrain(routine)}
+                onClick={() =>
+                  void onTrain(routine)
+                }
                 disabled={isLocked}
               >
                 {isActive
@@ -138,7 +157,9 @@ export function RoutineList({
                   <button
                     type="button"
                     className="action-button"
-                    onClick={() => onEdit(routine)}
+                    onClick={() =>
+                      onEdit(routine)
+                    }
                     disabled={isLocked}
                   >
                     Editar
@@ -147,7 +168,11 @@ export function RoutineList({
                   <button
                     type="button"
                     className="action-button"
-                    onClick={() => void onArchive(routine.id)}
+                    onClick={() =>
+                      void onArchive(
+                        routine.id,
+                      )
+                    }
                     disabled={isLocked}
                   >
                     Archivar
@@ -158,7 +183,11 @@ export function RoutineList({
                   <button
                     type="button"
                     className="action-button"
-                    onClick={() => void onRestore(routine.id)}
+                    onClick={() =>
+                      void onRestore(
+                        routine.id,
+                      )
+                    }
                     disabled={isWorking}
                   >
                     Restaurar
@@ -167,7 +196,11 @@ export function RoutineList({
                   <button
                     type="button"
                     className="action-button action-button--danger"
-                    onClick={() => void onDelete(routine.id)}
+                    onClick={() =>
+                      void onDelete(
+                        routine.id,
+                      )
+                    }
                     disabled={isWorking}
                   >
                     Eliminar
@@ -178,14 +211,22 @@ export function RoutineList({
 
             {isActive && (
               <p className="routine-card__active-warning">
-                Cerrá el entrenamiento para editar o configurar esta rutina.
+                Cerrá el entrenamiento para editar o
+                configurar esta rutina.
               </p>
             )}
 
             {isEditing && (
-              <p className="routine-card__editing-warning">
-                Terminá o cancelá la edición antes de usar esta rutina.
-              </p>
+              <>
+                <p className="routine-card__editing-warning">
+                  Terminá o cancelá la edición antes
+                  de usar esta rutina.
+                </p>
+
+                <div className="routine-card__inline-form">
+                  {editForm}
+                </div>
+              </>
             )}
           </article>
         );
@@ -193,6 +234,3 @@ export function RoutineList({
     </section>
   );
 }
-
-
-

@@ -81,7 +81,7 @@ export function CourseForm({
 
   return (
     <form
-      className="entity-form"
+      className="entity-form piero-course-form"
       onSubmit={handleSubmit}
     >
       <label>
@@ -188,3 +188,4 @@ export function CourseForm({
     </form>
   );
 }
+

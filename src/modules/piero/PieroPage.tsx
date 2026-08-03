@@ -275,6 +275,15 @@ export function PieroPage() {
         </p>
       </header>
 
+      <div className="piero-module-actions">
+        <Link
+          className="primary-button primary-button--piero"
+          to="/pendientes?modulo=piero"
+        >
+          Ver pendientes de Piero
+        </Link>
+      </div>
+
       {!loading && (
         <nav
           className="archive-tabs"
@@ -521,4 +530,5 @@ export function PieroPage() {
     </section>
   );
 }
+
 

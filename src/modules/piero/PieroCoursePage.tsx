@@ -431,6 +431,24 @@ export function PieroCoursePage() {
           >
             Administrar columnas
           </Link>
+
+          <Link
+            className="secondary-button piero-pending-link"
+            to="/pendientes?modulo=piero"
+          >
+            Ver pendientes
+          </Link>
+
+          <Link
+            className="secondary-button piero-pending-link"
+            to={`/pendientes?modulo=piero&nuevo=1&titulo=${encodeURIComponent(
+              `Tarea de ${course.name}`,
+            )}&descripcion=${encodeURIComponent(
+              `${course.name} · ${course.subject}`,
+            )}`}
+          >
+            Agregar pendiente
+          </Link>
         </div>
       </div>
 
@@ -631,6 +649,7 @@ export function PieroCoursePage() {
     </section>
   );
 }
+
 
 
 

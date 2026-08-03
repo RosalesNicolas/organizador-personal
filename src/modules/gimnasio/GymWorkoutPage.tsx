@@ -34,6 +34,7 @@ import {
 
 const MAX_WORKOUT_SECONDS = 4 * 60 * 60;
 const DEFAULT_REST_SECONDS = 45;
+const DEFAULT_BETWEEN_EXERCISES_REST_SECONDS = 2 * 60;
 const MIN_REST_SECONDS = 5;
 const MAX_REST_SECONDS = 10 * 60;
 
@@ -130,6 +131,13 @@ export function GymWorkoutPage() {
     DEFAULT_REST_SECONDS,
   );
   const [restRunning, setRestRunning] = useState(false);
+
+  const [
+    betweenExercisesRestDuration,
+    setBetweenExercisesRestDuration,
+  ] = useState(
+    DEFAULT_BETWEEN_EXERCISES_REST_SECONDS,
+  );
 
   const automaticFinishStarted = useRef(false);
   const restFinishedNotified = useRef(false);
@@ -228,6 +236,13 @@ try {
         setExercises(savedExercises);
         setSession(initialSession);
         saveWorkoutSession(initialSession);
+
+        const initialRestSeconds =
+          savedExercises[0]?.restSeconds ??
+          DEFAULT_REST_SECONDS;
+
+        setRestDuration(initialRestSeconds);
+        setRestRemaining(initialRestSeconds);
       })
       .catch((loadError: unknown) => {
         console.error(loadError);
@@ -387,6 +402,7 @@ try {
 
     prepareAudio();
     restFinishedNotified.current = false;
+    setRestDuration(safeSeconds);
     setRestRemaining(safeSeconds);
     setRestRunning(true);
   }
@@ -451,10 +467,15 @@ try {
 
     prepareAudio();
 
+    const exercise = exercises.find(
+      (currentExercise) =>
+        currentExercise.id === exerciseId,
+    );
+
     const currentProgress =
       session.exerciseProgress[exerciseId];
 
-    if (!currentProgress) {
+    if (!exercise || !currentProgress) {
       return;
     }
 
@@ -482,11 +503,46 @@ try {
     setSession(updatedSession);
     saveWorkoutSession(updatedSession);
 
-    if (nextCompletedValue) {
-      startRestTimer();
+    if (!nextCompletedValue) {
+      return;
     }
-  }
 
+    const workoutCompleted =
+      exercises.every((currentExercise) => {
+        const exerciseProgress =
+          updatedSession.exerciseProgress[
+            currentExercise.id
+          ];
+
+        return (
+          exerciseProgress?.completedSets.every(
+            Boolean,
+          ) ?? false
+        );
+      });
+
+    if (workoutCompleted) {
+      setRestRunning(false);
+      setRestRemaining(0);
+
+      window.alert(
+        "Rutina completada. El entrenamiento se finalizará automáticamente.",
+      );
+
+      void finishWorkout(true);
+      return;
+    }
+
+    const exerciseCompleted =
+      completedSets.every(Boolean);
+
+    const nextRestSeconds =
+      exerciseCompleted
+        ? betweenExercisesRestDuration
+        : exercise.restSeconds;
+
+    startRestTimer(nextRestSeconds);
+  }
   function handleSetDetailsChange(
     exerciseId: string,
     setIndex: number,
@@ -648,6 +704,48 @@ try {
               </button>
             </div>
           </div>
+
+          <label className="rest-timer__between-exercises">
+            <span>
+              Descanso al terminar un ejercicio
+            </span>
+
+            <div>
+              <input
+                type="number"
+                min={MIN_REST_SECONDS}
+                max={MAX_REST_SECONDS}
+                step="5"
+                value={
+                  betweenExercisesRestDuration
+                }
+                disabled={finishing}
+                onChange={(event) => {
+                  const numericValue = Number(
+                    event.target.value,
+                  );
+
+                  if (
+                    !Number.isFinite(numericValue)
+                  ) {
+                    return;
+                  }
+
+                  setBetweenExercisesRestDuration(
+                    Math.min(
+                      MAX_REST_SECONDS,
+                      Math.max(
+                        MIN_REST_SECONDS,
+                        Math.trunc(numericValue),
+                      ),
+                    ),
+                  );
+                }}
+              />
+
+              <span>segundos</span>
+            </div>
+          </label>
 
           <div className="rest-timer__controls">
             {restRunning ? (
@@ -900,6 +998,12 @@ try {
     </section>
   );
 }
+
+
+
+
+
+
 
 
 

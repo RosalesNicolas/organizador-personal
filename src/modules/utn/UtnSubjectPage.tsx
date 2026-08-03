@@ -69,15 +69,47 @@ export function UtnSubjectPage() {
 
   return (
     <section className="utn-page">
-      <Link className="back-link" to="/utn">
-        ← Volver a materias
-      </Link>
+      <nav className="utn-page-navigation">
+        <Link
+          className="back-link"
+          to="/"
+        >
+          ← Volver a Inicio
+        </Link>
+
+        <Link
+          className="back-link utn-page-navigation__right"
+          to="/utn"
+        >
+          Volver a UTN →
+        </Link>
+      </nav>
 
       <header className="module-header module-header--utn">
         <p className="module-header__eyebrow">{subject.code}</p>
         <h1>{subject.name}</h1>
         <p>Organización de entregas, parciales y notas personales.</p>
       </header>
+
+      <div className="utn-subject-pending-actions">
+        <Link
+          className="secondary-button utn-pending-link"
+          to="/pendientes?modulo=utn"
+        >
+          Ver pendientes
+        </Link>
+
+        <Link
+          className="primary-button primary-button--utn"
+          to={`/pendientes?modulo=utn&nuevo=1&titulo=${encodeURIComponent(
+            `Tarea de ${subject.code}`,
+          )}&descripcion=${encodeURIComponent(
+            `${subject.name} · UTN`,
+          )}`}
+        >
+          Agregar pendiente
+        </Link>
+      </div>
 
       <nav className="subject-tabs" aria-label="Secciones de la materia">
         <button
@@ -133,3 +165,5 @@ export function UtnSubjectPage() {
     </section>
   );
 }
+
+

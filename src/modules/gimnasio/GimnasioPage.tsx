@@ -1,4 +1,4 @@
-﻿import { useEffect, useRef, useState } from "react";
+﻿import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router";
 import { getExercises } from "./exercisesRepository";
 import {
@@ -21,6 +21,33 @@ import type {
   RoutineFormData,
 } from "./types";
 
+function getCompletedTimestamp(
+  routine: GymRoutine,
+) {
+  if (!routine.lastCompletedAt) {
+    return 0;
+  }
+
+  const value = routine.lastCompletedAt;
+
+  if (
+    typeof value === "object" &&
+    value !== null &&
+    "toDate" in value &&
+    typeof value.toDate === "function"
+  ) {
+    return value.toDate().getTime();
+  }
+
+  const timestamp = new Date(
+    String(value),
+  ).getTime();
+
+  return Number.isNaN(timestamp)
+    ? 0
+    : timestamp;
+}
+
 export function GimnasioPage() {
   const navigate = useNavigate();
 
@@ -37,6 +64,21 @@ export function GimnasioPage() {
   const [error, setError] = useState("");
 
   const formContainerRef = useRef<HTMLDivElement | null>(null);
+
+  const latestCompletedRoutine = useMemo(
+    () =>
+      routines
+        .filter(
+          (routine) =>
+            getCompletedTimestamp(routine) > 0,
+        )
+        .sort(
+          (routineA, routineB) =>
+            getCompletedTimestamp(routineB) -
+            getCompletedTimestamp(routineA),
+        )[0] ?? null,
+    [routines],
+  );
 
   async function reloadRoutines() {
     const savedRoutines = await getRoutines();
@@ -90,7 +132,17 @@ export function GimnasioPage() {
     setError("");
     setRoutineToEdit(routine);
     setShowForm(true);
-    scrollToForm();
+
+    window.requestAnimationFrame(() => {
+      document
+        .getElementById(
+          `routine-card-${routine.id}`,
+        )
+        ?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+    });
   }
 
   function handleCancelForm() {
@@ -274,14 +326,28 @@ export function GimnasioPage() {
           </p>
         </div>
 
-        <button
-          type="button"
-          className="inline-add-button inline-add-button--gym"
-          onClick={handleAdd}
-          disabled={Boolean(selectedRoutine)}
-        >
-          + Agregar rutina
-        </button>
+        <div className="gym-header-actions">
+          <button
+            type="button"
+            className="inline-add-button inline-add-button--gym"
+            onClick={handleAdd}
+            disabled={Boolean(selectedRoutine)}
+          >
+            + Agregar rutina
+          </button>
+
+          <div className="gym-last-routine">
+            <small>
+              Última rutina realizada
+            </small>
+
+            <strong>
+              {latestCompletedRoutine
+                ? latestCompletedRoutine.name
+                : "Sin registros"}
+            </strong>
+          </div>
+        </div>
       </header>
 
       {selectedRoutine && (
@@ -333,6 +399,17 @@ export function GimnasioPage() {
         workingId={workingId}
         activeRoutineId={selectedRoutine?.id ?? null}
         editingRoutineId={routineToEdit?.id ?? null}
+        editForm={
+          routineToEdit ? (
+            <RoutineForm
+              key={routineToEdit.id}
+              routineToEdit={routineToEdit}
+              saving={saving}
+              onSubmit={handleSubmit}
+              onCancel={handleCancelForm}
+            />
+          ) : null
+        }
         onTrain={handleStartWorkout}
         onEdit={handleEdit}
         onArchive={(routineId) => {
@@ -359,18 +436,15 @@ export function GimnasioPage() {
         onDelete={handleDelete}
       />
 
-      {showForm && (
+      {showForm && !routineToEdit && (
         <div
           ref={formContainerRef}
           className="item-form-container"
-          key={
-            routineToEdit?.id ??
-            "new-routine-container"
-          }
+          key="new-routine-container"
         >
           <RoutineForm
-            key={routineToEdit?.id ?? "new-routine"}
-            routineToEdit={routineToEdit}
+            key="new-routine"
+            routineToEdit={null}
             saving={saving}
             onSubmit={handleSubmit}
             onCancel={handleCancelForm}
@@ -382,5 +456,12 @@ export function GimnasioPage() {
     </section>
   );
 }
+
+
+
+
+
+
+
 
 

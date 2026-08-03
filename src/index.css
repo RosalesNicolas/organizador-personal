@@ -2467,3 +2467,1851 @@ select {
 .student-import__errors p {
   margin: 4px 0;
 }
+
+/* Identidad visual CJCC */
+
+.page--cjcc .subject-card {
+  border-left-color: #dc2626;
+}
+
+.page--cjcc .subject-card--link:hover {
+  border-color: rgba(220, 38, 38, 0.65);
+  border-left-color: #dc2626;
+  box-shadow: 0 0 0 1px rgba(220, 38, 38, 0.12);
+}
+
+.page--cjcc .subject-card__code {
+  color: #f87171;
+}
+
+.page--cjcc .subject-card__status {
+  background: rgba(220, 38, 38, 0.16);
+  color: #fca5a5;
+}
+
+.page--cjcc .back-link {
+  color: #f87171;
+}
+
+.page--cjcc .module-header {
+  border-top-color: #dc2626;
+}
+
+.primary-button--cjcc {
+  border-color: #dc2626;
+  background: #dc2626;
+  color: #ffffff;
+}
+
+.primary-button--cjcc:hover {
+  background: #b91c1c;
+}
+
+/* Estudiantes de CJCC */
+
+.cjcc-course-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.cjcc-student-form {
+  margin-bottom: 16px;
+  border-top-color: #dc2626;
+}
+
+.cjcc-student-list {
+  display: grid;
+  gap: 10px;
+}
+
+.cjcc-student-card {
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: 3px solid #dc2626;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.cjcc-student-card__content {
+  padding: 14px;
+}
+
+.cjcc-student-card__content h3 {
+  margin: 0;
+}
+
+.cjcc-student-card__content p {
+  margin: 8px 0 0;
+  color: #d1d5db;
+}
+
+.cjcc-student-card__actions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  padding: 10px 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cjcc-student-card__actions button {
+  min-height: 38px;
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  border-radius: 8px;
+  background: rgba(220, 38, 38, 0.08);
+  color: #fca5a5;
+  font-weight: 700;
+}
+
+.cjcc-student-card__actions .danger-button {
+  border-color: rgba(239, 68, 68, 0.35);
+  background: rgba(239, 68, 68, 0.1);
+}
+
+@media (max-width: 600px) {
+  .cjcc-course-actions {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Botón de confirmación del importador compartido */
+
+.page--piero .student-import__confirm {
+  border-color: #f97316;
+  background: #f97316;
+  color: #ffffff;
+}
+
+.page--piero .student-import__confirm:hover:not(:disabled) {
+  background: #ea580c;
+}
+
+.page--cjcc .student-import__confirm {
+  border-color: #dc2626;
+  background: #dc2626;
+  color: #ffffff;
+}
+
+.page--cjcc .student-import__confirm:hover:not(:disabled) {
+  background: #b91c1c;
+}
+
+.student-import__confirm:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+/* Evaluaciones de CJCC */
+
+.cjcc-course-actions .primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.cjcc-assessment-form {
+  margin-bottom: 16px;
+  border-top-color: #dc2626;
+}
+
+.checkbox-field {
+  display: flex !important;
+  align-items: center;
+  gap: 9px;
+}
+
+.checkbox-field input {
+  width: auto;
+  min-height: auto;
+}
+
+.cjcc-assessment-list {
+  display: grid;
+  gap: 12px;
+}
+
+.cjcc-assessment-card {
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: 3px solid #dc2626;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.cjcc-assessment-card__main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 16px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.cjcc-assessment-card__main h3 {
+  margin: 5px 0;
+}
+
+.cjcc-assessment-card__main p {
+  margin: 0;
+  color: #d1d5db;
+}
+
+.cjcc-assessment-card__date {
+  color: #f87171;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.cjcc-assessment-card__recoveries {
+  display: grid;
+  gap: 3px;
+  margin-top: 10px;
+  color: #d1d5db;
+  font-size: 0.78rem;
+}
+
+.cjcc-assessment-card__actions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  padding: 10px 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cjcc-assessment-card__actions button {
+  min-height: 38px;
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  border-radius: 8px;
+  background: rgba(220, 38, 38, 0.08);
+  color: #fca5a5;
+  font-weight: 700;
+}
+
+@media (max-width: 600px) {
+  .cjcc-assessment-card__main {
+    align-items: flex-start;
+  }
+}
+
+/* Resultados y detalle de evaluaciones CJCC */
+
+.cjcc-results-list {
+  display: grid;
+  gap: 8px;
+}
+
+.cjcc-result-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid rgba(220, 38, 38, 0.24);
+  border-left: 3px solid #dc2626;
+  border-radius: 10px;
+  background: rgba(220, 38, 38, 0.04);
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.cjcc-result-row > span:first-child {
+  display: grid;
+  gap: 4px;
+}
+
+.cjcc-result-row small {
+  color: #9ca3af;
+}
+
+.cjcc-final-grade {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  min-height: 38px;
+  padding: 5px 8px;
+  border-radius: 9px;
+  background: rgba(239, 68, 68, 0.14);
+  color: #fca5a5;
+  font-weight: 900;
+}
+
+.cjcc-final-grade--approved {
+  background: rgba(34, 197, 94, 0.15);
+  color: #86efac;
+}
+
+.cjcc-student-result-detail {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+  padding: 14px;
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  border-radius: 12px;
+  background: rgba(220, 38, 38, 0.035);
+}
+
+.cjcc-student-result-detail > header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.cjcc-student-result-detail header p,
+.cjcc-student-result-detail header h2 {
+  margin: 0;
+}
+
+.cjcc-student-result-detail header p {
+  margin-bottom: 4px;
+  color: #f87171;
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.cjcc-attempt-editor {
+  display: grid;
+  gap: 12px;
+  padding: 13px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.cjcc-attempt-editor__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.cjcc-attempt-editor__header h4,
+.cjcc-attempt-editor__header p {
+  margin: 0;
+}
+
+.cjcc-attempt-editor__header p {
+  margin-top: 4px;
+  color: #9ca3af;
+  font-size: 0.78rem;
+}
+
+.cjcc-attempt-status {
+  padding: 5px 8px;
+  border-radius: 999px;
+  background: rgba(239, 68, 68, 0.12);
+  color: #fca5a5;
+  font-size: 0.72rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.cjcc-attempt-status--approved {
+  background: rgba(34, 197, 94, 0.14);
+  color: #86efac;
+}
+
+.cjcc-topic-checklist {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9px;
+}
+
+.cjcc-topic-checklist legend {
+  padding: 0 5px;
+  color: #fca5a5;
+  font-weight: 800;
+}
+
+.cjcc-topic-checklist label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cjcc-topic-checklist input {
+  width: auto;
+  min-height: auto;
+}
+
+/* Editor desplegable junto al estudiante */
+
+.cjcc-result-entry {
+  display: grid;
+  gap: 8px;
+}
+
+.cjcc-result-row--selected {
+  border-color: rgba(220, 38, 38, 0.7);
+  background: rgba(220, 38, 38, 0.1);
+}
+
+.cjcc-result-entry .cjcc-student-result-detail {
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.cjcc-topic-checklist__select-all {
+  padding: 8px;
+  border-radius: 8px;
+  background: rgba(220, 38, 38, 0.09);
+  color: #fca5a5;
+  font-weight: 800;
+}
+
+.cjcc-topic-checklist__divider {
+  height: 1px;
+  margin: 2px 0;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Ficha rápida del estudiante CJCC */
+
+.cjcc-student-card__actions {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.cjcc-student-card__status-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  border-radius: 8px;
+  background: rgba(220, 38, 38, 0.08);
+  color: #fca5a5;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.cjcc-student-status-list {
+  display: grid;
+  gap: 14px;
+}
+
+.cjcc-student-status-card {
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid rgba(220, 38, 38, 0.25);
+  border-left: 3px solid #dc2626;
+  border-radius: 12px;
+  background: rgba(220, 38, 38, 0.035);
+}
+
+.cjcc-student-status-card > header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.cjcc-student-status-card h3,
+.cjcc-student-status-card small {
+  margin: 0;
+}
+
+.cjcc-student-status-card header small {
+  color: #f87171;
+}
+
+.cjcc-student-status-card__summary {
+  margin: 0;
+  color: #d1d5db;
+}
+
+.cjcc-student-attempt-summary {
+  display: grid;
+  gap: 9px;
+}
+
+.cjcc-student-attempt-item {
+  padding: 11px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.cjcc-student-attempt-item > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.cjcc-student-attempt-item p {
+  margin: 7px 0 0;
+  color: #d1d5db;
+}
+
+.cjcc-student-attempt-item ul {
+  margin: 5px 0 0;
+  padding-left: 20px;
+  color: #fca5a5;
+}
+
+.cjcc-student-status-card > .primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+@media (max-width: 600px) {
+  .cjcc-student-card__actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Selección de instancia CJCC */
+
+.cjcc-attempt-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 7px;
+  margin-bottom: 12px;
+}
+
+.cjcc-attempt-tab {
+  min-height: 42px;
+  padding: 8px;
+  border: 1px solid rgba(220, 38, 38, 0.25);
+  border-radius: 9px;
+  background: rgba(220, 38, 38, 0.05);
+  color: #d1d5db;
+  font-weight: 800;
+}
+
+.cjcc-attempt-tab--active {
+  border-color: #dc2626;
+  background: #dc2626;
+  color: #ffffff;
+}
+
+.cjcc-attempt-summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+  color: #d1d5db;
+}
+
+.cjcc-attempt-summary strong {
+  color: #fca5a5;
+}
+
+.cjcc-previous-topics {
+  padding: 11px;
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  border-radius: 9px;
+  background: rgba(34, 197, 94, 0.07);
+}
+
+.cjcc-previous-topics strong {
+  color: #86efac;
+}
+
+.cjcc-previous-topics ul {
+  margin: 8px 0 0;
+  padding-left: 20px;
+  color: #bbf7d0;
+}
+
+.cjcc-no-pending-topics {
+  margin: 0;
+  padding: 11px;
+  border-radius: 9px;
+  background: rgba(34, 197, 94, 0.1);
+  color: #86efac;
+  font-weight: 700;
+}
+
+@media (max-width: 600px) {
+  .cjcc-attempt-tabs {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cjcc-previous-grade {
+  margin: 0;
+  padding: 9px 11px;
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  border-radius: 8px;
+  background: rgba(59, 130, 246, 0.08);
+  color: #bfdbfe;
+  font-size: 0.84rem;
+}
+
+.cjcc-previous-grade strong {
+  color: #ffffff;
+}
+
+/* Navegación interna de CJCC */
+
+.cjcc-page-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.cjcc-page-navigation .back-link {
+  margin: 0;
+}
+
+.cjcc-page-navigation__right {
+  text-align: right;
+}
+
+@media (max-width: 480px) {
+  .cjcc-page-navigation {
+    align-items: flex-start;
+  }
+
+  .cjcc-page-navigation .back-link {
+    max-width: 48%;
+    line-height: 1.25;
+  }
+}
+
+/* Sistema general de pendientes */
+
+.pending-toolbar {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.pending-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.pending-filter,
+.pending-status-toggle {
+  min-height: 38px;
+  padding: 7px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  color: #d1d5db;
+  font-weight: 700;
+}
+
+.pending-filter--active {
+  border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.pending-status-toggle {
+  margin-bottom: 14px;
+}
+
+.pending-form {
+  margin-bottom: 16px;
+}
+
+.pending-list {
+  display: grid;
+  gap: 11px;
+}
+
+.pending-card {
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-left: 3px solid #9ca3af;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.pending-card--cjcc {
+  border-left-color: #ef4444;
+}
+
+.pending-card--piero {
+  border-left-color: #f97316;
+}
+
+.pending-card--utn {
+  border-left-color: #3b82f6;
+}
+
+.pending-card--high {
+  box-shadow: inset 0 0 0 1px rgba(239, 68, 68, 0.18);
+}
+
+.pending-card__main {
+  display: block;
+  padding: 14px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.pending-card__main span,
+.pending-card__main small {
+  color: #9ca3af;
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.pending-card__main h2 {
+  margin: 5px 0;
+  font-size: 1rem;
+}
+
+.pending-card__main p {
+  margin: 0 0 7px;
+  color: #d1d5db;
+}
+
+.pending-card__actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 7px;
+  padding: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.pending-card__actions button {
+  min-height: 38px;
+}
+
+.home-pending-section,
+.home-gym-summary {
+  margin-bottom: 18px;
+  padding: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.home-pending-section > header,
+.home-gym-summary {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.home-pending-section h2,
+.home-pending-section p,
+.home-gym-summary h2,
+.home-gym-summary p {
+  margin: 0;
+}
+
+.home-pending-section header p,
+.home-gym-summary p {
+  margin-top: 4px;
+  color: #bfc3cc;
+}
+
+.home-pending-section__button,
+.home-gym-summary a {
+  flex: 0 0 auto;
+  padding: 8px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+  color: #ffffff;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.home-pending-list {
+  display: grid;
+  gap: 8px;
+  margin-top: 13px;
+}
+
+.home-pending-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 11px;
+  border-left: 3px solid #9ca3af;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  color: inherit;
+  text-decoration: none;
+}
+
+.home-pending-item--cjcc {
+  border-left-color: #ef4444;
+}
+
+.home-pending-item--piero {
+  border-left-color: #f97316;
+}
+
+.home-pending-item--utn {
+  border-left-color: #3b82f6;
+}
+
+.home-pending-item > div {
+  display: grid;
+  gap: 3px;
+}
+
+.home-pending-item small {
+  color: #9ca3af;
+}
+
+.home-pending-item > span {
+  color: #fca5a5;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-align: right;
+}
+
+.home-empty-message {
+  margin-top: 12px !important;
+}
+
+.home-gym-summary {
+  border-left: 3px solid #22c55e;
+}
+
+.home-gym-summary small {
+  color: #86efac;
+  font-weight: 800;
+}
+
+@media (max-width: 560px) {
+  .pending-card__actions {
+    grid-template-columns: 1fr;
+  }
+
+  .home-gym-summary {
+    display: grid;
+  }
+
+  .home-pending-item {
+    align-items: flex-start;
+  }
+}
+
+/* Correcciones visuales de Pendientes */
+
+.pending-page {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.pending-page__header {
+  margin-bottom: 12px;
+}
+
+.pending-toolbar {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.pending-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.pending-filter,
+.pending-status-toggle,
+.pending-add-button {
+  min-height: 40px;
+  border-radius: 8px;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.pending-filter,
+.pending-status-toggle {
+  padding: 8px 13px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.055);
+  color: #e5e7eb;
+}
+
+.pending-filter:hover,
+.pending-status-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.pending-filter--active {
+  border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+.pending-add-button {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #2563eb;
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.pending-add-button:hover {
+  background: #1d4ed8;
+}
+
+.pending-status-toggle {
+  margin-bottom: 16px;
+}
+
+.pending-form {
+  display: grid;
+  gap: 16px;
+  margin: 16px 0;
+  padding: 16px;
+  border: 1px solid rgba(59, 130, 246, 0.28);
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.pending-form__header small {
+  color: #93c5fd;
+  font-size: 0.73rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.pending-form__header h2 {
+  margin: 4px 0 0;
+}
+
+.pending-form__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+}
+
+.pending-form__field {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  min-width: 0;
+}
+
+.pending-form__field--wide {
+  grid-column: 1 / -1;
+}
+
+.pending-form__field > span {
+  color: #e5e7eb;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.pending-form__field input,
+.pending-form__field select,
+.pending-form__field textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 42px;
+  padding: 9px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  background: #111318;
+  color: #ffffff;
+  font: inherit;
+}
+
+.pending-form__field textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.pending-form__field input:focus,
+.pending-form__field select:focus,
+.pending-form__field textarea:focus {
+  outline: 2px solid rgba(59, 130, 246, 0.65);
+  outline-offset: 1px;
+}
+
+.pending-form__actions {
+  display: grid;
+  grid-template-columns: minmax(110px, auto) 1fr;
+  gap: 9px;
+}
+
+.pending-form__cancel,
+.pending-form__save {
+  min-height: 42px;
+  padding: 9px 14px;
+  border-radius: 8px;
+  font: inherit;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.pending-form__cancel {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+}
+
+.pending-form__save {
+  border: 1px solid #2563eb;
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.pending-form__save:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+
+.pending-form__cancel:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.11);
+}
+
+.pending-form__save:disabled,
+.pending-form__cancel:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.pending-empty-state {
+  margin-top: 10px;
+}
+
+.pending-list {
+  display: grid;
+  gap: 12px;
+}
+
+.pending-card {
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-left: 3px solid #9ca3af;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.pending-card--cjcc {
+  border-left-color: #ef4444;
+}
+
+.pending-card--piero {
+  border-left-color: #f97316;
+}
+
+.pending-card--utn {
+  border-left-color: #3b82f6;
+}
+
+.pending-card--high {
+  box-shadow:
+    inset 0 0 0 1px rgba(239, 68, 68, 0.23),
+    0 0 18px rgba(239, 68, 68, 0.05);
+}
+
+.pending-card__main {
+  display: grid;
+  gap: 8px;
+  padding: 15px;
+}
+
+.pending-card__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.pending-card__module,
+.pending-card__priority {
+  display: inline-flex;
+  align-items: center;
+  min-height: 25px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 0.69rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.pending-card__module--cjcc {
+  background: rgba(239, 68, 68, 0.13);
+  color: #fca5a5;
+}
+
+.pending-card__module--piero {
+  background: rgba(249, 115, 22, 0.13);
+  color: #fdba74;
+}
+
+.pending-card__module--utn {
+  background: rgba(59, 130, 246, 0.13);
+  color: #93c5fd;
+}
+
+.pending-card__priority--normal {
+  background: rgba(156, 163, 175, 0.13);
+  color: #d1d5db;
+}
+
+.pending-card__priority--high {
+  background: rgba(239, 68, 68, 0.16);
+  color: #fca5a5;
+}
+
+.pending-card__main h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.pending-card__main p {
+  margin: 0;
+  color: #d1d5db;
+}
+
+.pending-card__date {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  color: #d1d5db;
+  font-size: 0.78rem;
+}
+
+.pending-card__date span {
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+  color: #fca5a5;
+  font-weight: 800;
+}
+
+.pending-card__actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  padding: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.pending-action-button {
+  min-height: 40px;
+  padding: 8px;
+  border-radius: 8px;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.pending-action-button--complete {
+  border: 1px solid rgba(34, 197, 94, 0.35);
+  background: rgba(34, 197, 94, 0.12);
+  color: #86efac;
+}
+
+.pending-action-button--edit {
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  background: rgba(59, 130, 246, 0.12);
+  color: #93c5fd;
+}
+
+.pending-action-button--delete {
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  background: rgba(239, 68, 68, 0.12);
+  color: #fca5a5;
+}
+
+.pending-action-button:hover:not(:disabled) {
+  filter: brightness(1.18);
+}
+
+.pending-action-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+@media (max-width: 600px) {
+  .pending-form__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pending-form__field--wide {
+    grid-column: auto;
+  }
+
+  .pending-form__actions {
+    grid-template-columns: 1fr;
+  }
+
+  .pending-card__actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Resumen de última rutina */
+
+.home-gym-summary__routine {
+  display: block;
+  margin-top: 8px;
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.home-gym-summary__date {
+  display: block;
+  margin-top: 4px;
+  color: #86efac;
+  font-size: 0.78rem;
+}
+
+.gym-header-actions {
+  display: grid;
+  justify-items: end;
+  gap: 9px;
+}
+
+.gym-last-routine {
+  display: grid;
+  justify-items: end;
+  gap: 2px;
+  text-align: right;
+}
+
+.gym-last-routine small {
+  color: #86efac;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.gym-last-routine strong {
+  max-width: 190px;
+  font-size: 0.84rem;
+}
+
+/* Acción secundaria dentro de las rutinas */
+
+.routine-card .configure-routine-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  min-height: 36px;
+  margin-top: 9px;
+  padding: 7px 13px;
+  border: 1px solid rgba(34, 197, 94, 0.55);
+  border-radius: 8px;
+  background: transparent;
+  color: #86efac;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.routine-card .configure-routine-button:hover {
+  background: rgba(34, 197, 94, 0.1);
+}
+
+.routine-card .start-workout-button,
+.routine-card .continue-workout-button {
+  width: 100%;
+  min-height: 42px;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+  .gym-header-actions {
+    justify-items: stretch;
+    width: 100%;
+  }
+
+  .gym-last-routine {
+    justify-items: start;
+    text-align: left;
+  }
+
+  .gym-last-routine strong {
+    max-width: none;
+  }
+
+  .routine-card .configure-routine-button {
+    width: auto;
+    justify-self: start;
+  }
+}
+
+/* Formulario de edición dentro de la rutina */
+
+.routine-card__inline-form {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid
+    rgba(255, 255, 255, 0.1);
+}
+
+.routine-card__inline-form .item-form,
+.routine-card__inline-form form {
+  margin: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.routine-card--editing {
+  scroll-margin-top: 16px;
+}
+
+/* Descanso configurable entre ejercicios */
+
+.rest-timer__between-exercises {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 10px 0;
+  padding: 9px 11px;
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  border-radius: 9px;
+  background: rgba(34, 197, 94, 0.055);
+}
+
+.rest-timer__between-exercises > span {
+  color: #bbf7d0;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.rest-timer__between-exercises > div {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.rest-timer__between-exercises input {
+  box-sizing: border-box;
+  width: 74px;
+  min-height: 34px;
+  padding: 5px 7px;
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  border-radius: 7px;
+  background: #111318;
+  color: #ffffff;
+  font: inherit;
+  font-weight: 800;
+  text-align: center;
+}
+
+.rest-timer__between-exercises div span {
+  color: #86efac;
+  font-size: 0.72rem;
+}
+
+@media (max-width: 520px) {
+  .rest-timer__between-exercises {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+/* Integración de evaluaciones y pendientes CJCC */
+
+.cjcc-module-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 14px;
+}
+
+.cjcc-module-actions .primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.cjcc-assessment-toolbar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.cjcc-pending-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  text-decoration: none;
+}
+
+.cjcc-assessment-pending-options {
+  display: grid;
+  gap: 13px;
+  margin-top: 8px;
+  padding: 14px;
+  border: 1px solid rgba(220, 38, 38, 0.25);
+  border-radius: 11px;
+  background: rgba(220, 38, 38, 0.045);
+}
+
+.cjcc-assessment-pending-options header h4,
+.cjcc-assessment-pending-options header p {
+  margin: 0;
+}
+
+.cjcc-assessment-pending-options header small {
+  color: #f87171;
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.cjcc-assessment-pending-options header h4 {
+  margin-top: 3px;
+}
+
+.cjcc-assessment-pending-options header p {
+  margin-top: 5px;
+  color: #d1d5db;
+  font-size: 0.82rem;
+}
+
+.cjcc-pending-option-fields {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(130px, 0.45fr);
+  gap: 10px;
+  padding-left: 25px;
+}
+
+.cjcc-pending-option-fields label {
+  display: grid;
+  gap: 6px;
+}
+
+.cjcc-pending-option-fields input,
+.cjcc-pending-option-fields select {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 40px;
+}
+
+@media (max-width: 600px) {
+  .cjcc-module-actions {
+    justify-content: stretch;
+  }
+
+  .cjcc-module-actions .primary-button {
+    width: 100%;
+  }
+
+  .cjcc-assessment-toolbar-actions {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+
+  .cjcc-pending-option-fields {
+    grid-template-columns: 1fr;
+    padding-left: 0;
+  }
+}
+
+/* Integración de Piero con pendientes */
+
+.piero-module-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 14px;
+}
+
+.piero-module-actions .primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.piero-pending-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  border-color: rgba(249, 115, 22, 0.42);
+  background: rgba(249, 115, 22, 0.08);
+  color: #fdba74;
+  text-decoration: none;
+}
+
+.piero-pending-link:hover {
+  background: rgba(249, 115, 22, 0.15);
+}
+
+@media (max-width: 600px) {
+  .piero-module-actions {
+    justify-content: stretch;
+  }
+
+  .piero-module-actions .primary-button {
+    width: 100%;
+  }
+
+  .piero-course-actions .piero-pending-link {
+    width: 100%;
+  }
+}
+
+/* Integración de UTN con pendientes */
+
+.utn-module-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 14px;
+}
+
+.utn-module-actions .primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.utn-subject-pending-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.utn-subject-pending-actions .primary-button,
+.utn-pending-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  text-decoration: none;
+}
+
+.utn-pending-link {
+  border-color: rgba(59, 130, 246, 0.42);
+  background: rgba(59, 130, 246, 0.08);
+  color: #93c5fd;
+}
+
+.utn-pending-link:hover {
+  background: rgba(59, 130, 246, 0.15);
+}
+
+.utn-page-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.utn-page-navigation .back-link {
+  margin: 0;
+}
+
+.utn-page-navigation__right {
+  text-align: right;
+}
+
+@media (max-width: 600px) {
+  .utn-module-actions {
+    justify-content: stretch;
+  }
+
+  .utn-module-actions .primary-button {
+    width: 100%;
+  }
+
+  .utn-subject-pending-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .utn-subject-pending-actions .primary-button,
+  .utn-pending-link {
+    width: 100%;
+  }
+
+  .utn-page-navigation {
+    align-items: flex-start;
+  }
+
+  .utn-page-navigation .back-link {
+    max-width: 48%;
+    line-height: 1.25;
+  }
+}
+
+/* Formularios de cursos y estudiantes */
+
+.piero-course-form,
+.student-form,
+.cjcc-student-form {
+  display: grid;
+  gap: 14px;
+  margin: 14px 0 18px;
+  padding: 16px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.piero-course-form {
+  border: 1px solid rgba(249, 115, 22, 0.3);
+  border-top: 3px solid #f97316;
+}
+
+.student-form {
+  border: 1px solid rgba(249, 115, 22, 0.3);
+  border-top: 3px solid #f97316;
+}
+
+.cjcc-student-form {
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-top: 3px solid #ef4444;
+}
+
+.piero-course-form h3,
+.student-form h3,
+.cjcc-student-form h3 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.piero-course-form > label,
+.student-form > label,
+.cjcc-student-form > label {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+  color: #e5e7eb;
+  font-size: 0.84rem;
+  font-weight: 800;
+}
+
+.piero-course-form input,
+.piero-course-form select,
+.piero-course-form textarea,
+.student-form input,
+.student-form select,
+.student-form textarea,
+.cjcc-student-form input,
+.cjcc-student-form select,
+.cjcc-student-form textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: 42px;
+  padding: 9px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  background: #111318;
+  color: #ffffff;
+  font: inherit;
+}
+
+.piero-course-form textarea,
+.student-form textarea,
+.cjcc-student-form textarea {
+  min-height: 92px;
+  resize: vertical;
+}
+
+.piero-course-form input:focus,
+.piero-course-form select:focus,
+.piero-course-form textarea:focus,
+.student-form input:focus,
+.student-form select:focus,
+.student-form textarea:focus {
+  outline: 2px solid rgba(249, 115, 22, 0.65);
+  outline-offset: 1px;
+}
+
+.cjcc-student-form input:focus,
+.cjcc-student-form select:focus,
+.cjcc-student-form textarea:focus {
+  outline: 2px solid rgba(239, 68, 68, 0.65);
+  outline-offset: 1px;
+}
+
+.piero-course-form .form-actions,
+.student-form .form-actions,
+.cjcc-student-form .form-actions {
+  display: grid;
+  grid-template-columns: minmax(110px, auto) 1fr;
+  gap: 9px;
+  margin-top: 2px;
+}
+
+.piero-course-form .form-actions button,
+.student-form .form-actions button,
+.cjcc-student-form .form-actions button {
+  min-height: 42px;
+  padding: 9px 14px;
+  border-radius: 8px;
+  font-weight: 900;
+}
+
+@media (max-width: 600px) {
+  .piero-course-form,
+  .student-form,
+  .cjcc-student-form {
+    padding: 14px;
+  }
+
+  .piero-course-form .form-actions,
+  .student-form .form-actions,
+  .cjcc-student-form .form-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .piero-course-form .form-actions button,
+  .student-form .form-actions button,
+  .cjcc-student-form .form-actions button {
+    width: 100%;
+  }
+}
+
+/* Formulario de evaluaciones CJCC */
+
+.cjcc-assessment-form {
+  display: grid;
+  gap: 14px;
+  margin: 14px 0 18px;
+  padding: 16px;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-top: 3px solid #ef4444;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.cjcc-assessment-form > h3 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.cjcc-assessment-form > label {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+  color: #e5e7eb;
+  font-size: 0.84rem;
+  font-weight: 800;
+}
+
+.cjcc-assessment-form input,
+.cjcc-assessment-form select,
+.cjcc-assessment-form textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: 42px;
+  padding: 9px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  background: #111318;
+  color: #ffffff;
+  font: inherit;
+}
+
+.cjcc-assessment-form textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+.cjcc-assessment-form input:focus,
+.cjcc-assessment-form select:focus,
+.cjcc-assessment-form textarea:focus {
+  outline: 2px solid rgba(239, 68, 68, 0.65);
+  outline-offset: 1px;
+}
+
+.cjcc-assessment-form .checkbox-field {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 32px;
+}
+
+.cjcc-assessment-form .checkbox-field input {
+  flex: 0 0 auto;
+  width: 18px;
+  min-height: 18px;
+  height: 18px;
+  margin: 0;
+}
+
+.cjcc-assessment-form .form-actions {
+  display: grid;
+  grid-template-columns: minmax(110px, auto) 1fr;
+  gap: 9px;
+  margin-top: 2px;
+}
+
+.cjcc-assessment-form .form-actions button {
+  min-height: 42px;
+  padding: 9px 14px;
+  border-radius: 8px;
+  font-weight: 900;
+}
+
+/* Pendientes generados desde una evaluación */
+
+.cjcc-assessment-form
+  .cjcc-assessment-pending-options {
+  margin-top: 4px;
+}
+
+.cjcc-assessment-form
+  .cjcc-pending-option-fields {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(120px, 0.45fr);
+  gap: 10px;
+}
+
+.cjcc-assessment-form
+  .cjcc-pending-option-fields label {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  color: #e5e7eb;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+@media (max-width: 600px) {
+  .cjcc-assessment-form {
+    padding: 14px;
+  }
+
+  .cjcc-assessment-form
+    .cjcc-pending-option-fields {
+    grid-template-columns: 1fr;
+    padding-left: 0;
+  }
+
+  .cjcc-assessment-form .form-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .cjcc-assessment-form
+    .form-actions button {
+    width: 100%;
+  }
+}

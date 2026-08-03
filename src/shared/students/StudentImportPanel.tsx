@@ -191,7 +191,7 @@ export function StudentImport({
 
             <button
               type="button"
-              className="primary-button primary-button--piero"
+              className="primary-button student-import__confirm"
               onClick={handleConfirm}
               disabled={
                 importing ||
@@ -212,3 +212,4 @@ export function StudentImport({
     </section>
   );
 }
+
