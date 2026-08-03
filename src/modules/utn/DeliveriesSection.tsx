@@ -1,4 +1,10 @@
-﻿import { useEffect, useRef, useState } from "react";
+﻿import {
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from "react";
 import {
   archiveDelivery,
   changeDeliveryStatus,
@@ -20,23 +26,48 @@ type DeliveriesSectionProps = {
   subjectId: string;
 };
 
-export function DeliveriesSection({
-  subjectId,
-}: DeliveriesSectionProps) {
-  const [deliveries, setDeliveries] = useState<UtnDelivery[]>([]);
+export type DeliveriesSectionHandle = {
+  openCreateForm: () => void;
+};
+
+export const DeliveriesSection = forwardRef<
+  DeliveriesSectionHandle,
+  DeliveriesSectionProps
+>(function DeliveriesSection(
+  { subjectId },
+  reference,
+) {
+  const [deliveries, setDeliveries] = useState<
+    UtnDelivery[]
+  >([]);
+
   const [deliveryToEdit, setDeliveryToEdit] =
     useState<UtnDelivery | null>(null);
-  const [showForm, setShowForm] = useState(false);
-  const [showArchived, setShowArchived] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [saving, setSaving] = useState(false);
-  const [workingId, setWorkingId] = useState<string | null>(null);
+
+  const [showForm, setShowForm] =
+    useState(false);
+
+  const [showArchived, setShowArchived] =
+    useState(false);
+
+  const [loading, setLoading] =
+    useState(true);
+
+  const [saving, setSaving] =
+    useState(false);
+
+  const [workingId, setWorkingId] =
+    useState<string | null>(null);
+
   const [error, setError] = useState("");
 
-  const formContainerRef = useRef<HTMLDivElement | null>(null);
+  const formContainerRef =
+    useRef<HTMLDivElement | null>(null);
 
   async function reloadDeliveries() {
-    const savedDeliveries = await getDeliveries(subjectId);
+    const savedDeliveries =
+      await getDeliveries(subjectId);
+
     setDeliveries(savedDeliveries);
   }
 
@@ -54,6 +85,13 @@ export function DeliveriesSection({
     setShowForm(true);
     scrollToForm();
   }
+
+  useImperativeHandle(
+    reference,
+    () => ({
+      openCreateForm: handleAdd,
+    }),
+  );
 
   function handleEdit(delivery: UtnDelivery) {
     setDeliveryToEdit(delivery);
@@ -79,7 +117,9 @@ export function DeliveriesSection({
         console.error(loadError);
 
         if (!cancelled) {
-          setError("No se pudieron cargar las entregas.");
+          setError(
+            "No se pudieron cargar las entregas.",
+          );
         }
       })
       .finally(() => {
@@ -93,13 +133,19 @@ export function DeliveriesSection({
     };
   }, [subjectId]);
 
-  async function handleSubmit(data: DeliveryFormData) {
+  async function handleSubmit(
+    data: DeliveryFormData,
+  ) {
     try {
       setSaving(true);
       setError("");
 
       if (deliveryToEdit) {
-        await updateDelivery(subjectId, deliveryToEdit.id, data);
+        await updateDelivery(
+          subjectId,
+          deliveryToEdit.id,
+          data,
+        );
       } else {
         await createDelivery(subjectId, data);
       }
@@ -109,7 +155,9 @@ export function DeliveriesSection({
       setShowForm(false);
     } catch (saveError) {
       console.error(saveError);
-      setError("No se pudo guardar la entrega.");
+      setError(
+        "No se pudo guardar la entrega.",
+      );
       throw saveError;
     } finally {
       setSaving(false);
@@ -141,12 +189,19 @@ export function DeliveriesSection({
   ) {
     await runAction(
       deliveryId,
-      () => changeDeliveryStatus(subjectId, deliveryId, status),
+      () =>
+        changeDeliveryStatus(
+          subjectId,
+          deliveryId,
+          status,
+        ),
       "No se pudo cambiar el estado.",
     );
   }
 
-  async function handleDelete(deliveryId: string) {
+  async function handleDelete(
+    deliveryId: string,
+  ) {
     const confirmed = window.confirm(
       "¿Eliminar definitivamente esta entrega? Esta acción no se puede deshacer.",
     );
@@ -157,25 +212,25 @@ export function DeliveriesSection({
 
     await runAction(
       deliveryId,
-      () => permanentlyDeleteDelivery(subjectId, deliveryId),
+      () =>
+        permanentlyDeleteDelivery(
+          subjectId,
+          deliveryId,
+        ),
       "No se pudo eliminar la entrega.",
     );
   }
 
   if (loading) {
-    return <p className="status-message">Cargando entregas...</p>;
+    return (
+      <p className="status-message">
+        Cargando entregas...
+      </p>
+    );
   }
 
   return (
     <section className="deliveries-section">
-      <button
-        type="button"
-        className="inline-add-button"
-        onClick={handleAdd}
-      >
-        + Agregar entrega
-      </button>
-
       <div className="archive-toggle">
         <button
           type="button"
@@ -184,7 +239,9 @@ export function DeliveriesSection({
               ? "subject-tab subject-tab--active"
               : "subject-tab"
           }
-          onClick={() => setShowArchived(false)}
+          onClick={() =>
+            setShowArchived(false)
+          }
         >
           Activas
         </button>
@@ -196,7 +253,9 @@ export function DeliveriesSection({
               ? "subject-tab subject-tab--active"
               : "subject-tab"
           }
-          onClick={() => setShowArchived(true)}
+          onClick={() =>
+            setShowArchived(true)
+          }
         >
           Archivadas
         </button>
@@ -211,14 +270,22 @@ export function DeliveriesSection({
         onArchive={(deliveryId) =>
           runAction(
             deliveryId,
-            () => archiveDelivery(subjectId, deliveryId),
+            () =>
+              archiveDelivery(
+                subjectId,
+                deliveryId,
+              ),
             "No se pudo archivar la entrega.",
           )
         }
         onRestore={(deliveryId) =>
           runAction(
             deliveryId,
-            () => restoreDelivery(subjectId, deliveryId),
+            () =>
+              restoreDelivery(
+                subjectId,
+                deliveryId,
+              ),
             "No se pudo restaurar la entrega.",
           )
         }
@@ -229,20 +296,31 @@ export function DeliveriesSection({
         <div
           ref={formContainerRef}
           className="item-form-container"
-          key={deliveryToEdit?.id ?? "new-delivery-container"}
+          key={
+            deliveryToEdit?.id ??
+            "new-delivery-container"
+          }
         >
           <DeliveryForm
-            key={deliveryToEdit?.id ?? "new-delivery"}
-            deliveryToEdit={deliveryToEdit}
+            key={
+              deliveryToEdit?.id ??
+              "new-delivery"
+            }
+            deliveryToEdit={
+              deliveryToEdit
+            }
             saving={saving}
             onSubmit={handleSubmit}
-            onCancelEdit={handleCancelForm}
+            onCancelEdit={
+              handleCancelForm
+            }
           />
         </div>
       )}
 
-      {error && <p className="form-error">{error}</p>}
+      {error && (
+        <p className="form-error">{error}</p>
+      )}
     </section>
   );
-}
-
+});

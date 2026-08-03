@@ -665,6 +665,57 @@ try {
         </div>
       </header>
 
+      <section className="workout-rest-settings">
+        <div>
+          <small>Configuración</small>
+
+          <strong>
+            Descanso entre ejercicios
+          </strong>
+
+          <p>
+            Se utiliza al completar la última
+            serie de un ejercicio.
+          </p>
+        </div>
+
+        <label>
+          <input
+            type="number"
+            min={MIN_REST_SECONDS}
+            max={MAX_REST_SECONDS}
+            step="5"
+            value={
+              betweenExercisesRestDuration
+            }
+            disabled={finishing}
+            onChange={(event) => {
+              const numericValue = Number(
+                event.target.value,
+              );
+
+              if (
+                !Number.isFinite(numericValue)
+              ) {
+                return;
+              }
+
+              setBetweenExercisesRestDuration(
+                Math.min(
+                  MAX_REST_SECONDS,
+                  Math.max(
+                    MIN_REST_SECONDS,
+                    Math.trunc(numericValue),
+                  ),
+                ),
+              );
+            }}
+          />
+
+          <span>segundos</span>
+        </label>
+      </section>
+
       <div className="workout-sticky-panel">
         <section className="rest-timer">
           <div className="rest-timer__main">
@@ -704,48 +755,6 @@ try {
               </button>
             </div>
           </div>
-
-          <label className="rest-timer__between-exercises">
-            <span>
-              Descanso al terminar un ejercicio
-            </span>
-
-            <div>
-              <input
-                type="number"
-                min={MIN_REST_SECONDS}
-                max={MAX_REST_SECONDS}
-                step="5"
-                value={
-                  betweenExercisesRestDuration
-                }
-                disabled={finishing}
-                onChange={(event) => {
-                  const numericValue = Number(
-                    event.target.value,
-                  );
-
-                  if (
-                    !Number.isFinite(numericValue)
-                  ) {
-                    return;
-                  }
-
-                  setBetweenExercisesRestDuration(
-                    Math.min(
-                      MAX_REST_SECONDS,
-                      Math.max(
-                        MIN_REST_SECONDS,
-                        Math.trunc(numericValue),
-                      ),
-                    ),
-                  );
-                }}
-              />
-
-              <span>segundos</span>
-            </div>
-          </label>
 
           <div className="rest-timer__controls">
             {restRunning ? (
@@ -998,6 +1007,8 @@ try {
     </section>
   );
 }
+
+
 
 
 

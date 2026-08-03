@@ -1,6 +1,9 @@
-﻿import { useEffect, useState } from "react";
+﻿import { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router";
-import { DeliveriesSection } from "./DeliveriesSection";
+import {
+  DeliveriesSection,
+  type DeliveriesSectionHandle,
+} from "./DeliveriesSection";
 import { ExamsSection } from "./ExamsSection";
 import { NotesSection } from "./NotesSection";
 import { getSubjectById } from "./subjectsRepository";
@@ -10,6 +13,11 @@ type SubjectSection = "entregas" | "parciales" | "notas";
 
 export function UtnSubjectPage() {
   const { subjectId } = useParams();
+
+  const deliveriesSectionRef =
+    useRef<DeliveriesSectionHandle | null>(
+      null,
+    );
 
   const [subject, setSubject] = useState<UtnSubject | null>(null);
   const [activeSection, setActiveSection] =
@@ -91,26 +99,42 @@ export function UtnSubjectPage() {
         <p>Organización de entregas, parciales y notas personales.</p>
       </header>
 
-      <div className="utn-subject-pending-actions">
-        <Link
-          className="secondary-button utn-pending-link"
-          to="/pendientes?modulo=utn"
-        >
-          Ver pendientes
-        </Link>
+      <div className="utn-subject-primary-actions">
+        <div className="utn-subject-primary-actions__left">
+          {activeSection === "entregas" && (
+            <button
+              type="button"
+              className="inline-add-button"
+              onClick={() =>
+                deliveriesSectionRef.current
+                  ?.openCreateForm()
+              }
+            >
+              + Agregar entrega
+            </button>
+          )}
+        </div>
 
-        <Link
-          className="primary-button primary-button--utn"
-          to={`/pendientes?modulo=utn&nuevo=1&titulo=${encodeURIComponent(
-            `Tarea de ${subject.code}`,
-          )}&descripcion=${encodeURIComponent(
-            `${subject.name} · UTN`,
-          )}`}
-        >
-          Agregar pendiente
-        </Link>
+        <div className="utn-subject-pending-actions">
+          <Link
+            className="secondary-button utn-pending-link"
+            to="/pendientes?modulo=utn"
+          >
+            Ver pendientes
+          </Link>
+
+          <Link
+            className="primary-button primary-button--utn"
+            to={`/pendientes?modulo=utn&nuevo=1&titulo=${encodeURIComponent(
+              `Tarea de ${subject.code}`,
+            )}&descripcion=${encodeURIComponent(
+              `${subject.name} · UTN`,
+            )}`}
+          >
+            Agregar pendiente
+          </Link>
+        </div>
       </div>
-
       <nav className="subject-tabs" aria-label="Secciones de la materia">
         <button
           type="button"
@@ -151,7 +175,10 @@ export function UtnSubjectPage() {
 
       <section className="subject-section subject-section--transparent">
         {activeSection === "entregas" && (
-          <DeliveriesSection subjectId={subject.id} />
+          <DeliveriesSection
+            ref={deliveriesSectionRef}
+            subjectId={subject.id}
+          />
         )}
 
         {activeSection === "parciales" && (
@@ -165,5 +192,9 @@ export function UtnSubjectPage() {
     </section>
   );
 }
+
+
+
+
 
 
