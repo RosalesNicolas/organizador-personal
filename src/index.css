@@ -4856,3 +4856,190 @@ select {
     width: 100%;
   }
 }
+
+/* Cabeceras principales diferenciadas */
+
+.module-header {
+  --module-header-accent: #71717a;
+
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-color: rgba(255, 255, 255, 0.14);
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.055),
+      rgba(255, 255, 255, 0.018)
+    ),
+    rgba(20, 20, 24, 0.96);
+  box-shadow:
+    inset 0 1px 0
+      rgba(255, 255, 255, 0.045),
+    0 8px 24px
+      rgba(0, 0, 0, 0.1);
+}
+
+.module-header::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: -55px;
+  right: -45px;
+  width: 150px;
+  height: 150px;
+  border-radius: 999px;
+  background: var(--module-header-accent);
+  opacity: 0.055;
+  filter: blur(2px);
+  pointer-events: none;
+}
+
+.module-header--gym {
+  --module-header-accent: #22c55e;
+}
+
+.module-header--utn {
+  --module-header-accent: #3b82f6;
+}
+
+.page--piero .module-header {
+  --module-header-accent: #f97316;
+}
+
+.page--cjcc .module-header {
+  --module-header-accent: #ef4444;
+}
+
+.module-header h1 {
+  letter-spacing: -0.025em;
+}
+
+.module-header > div,
+.module-header > p,
+.module-header > h1 {
+  position: relative;
+  z-index: 1;
+}
+
+.home-gym-summary__duration {
+  display: block;
+  margin-top: 4px;
+  color: #bbf7d0;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+/* Acciones compactas de pendientes en móvil */
+
+@media (max-width: 600px) {
+  .pending-card__actions {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+    gap: 6px;
+    padding: 8px;
+  }
+
+  .pending-action-button {
+    min-width: 0;
+    min-height: 34px;
+    padding: 6px 3px;
+    border-radius: 7px;
+    font-size: 0.73rem;
+    line-height: 1.1;
+    white-space: normal;
+  }
+}
+
+@media (max-width: 360px) {
+  .pending-card__actions {
+    gap: 4px;
+    padding: 7px;
+  }
+
+  .pending-action-button {
+    padding-inline: 2px;
+    font-size: 0.68rem;
+  }
+}
+
+/* Corrección final de cabecera de Gimnasio */
+
+.module-header--gym {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr)
+    auto;
+  align-items: center;
+  gap: 20px;
+  padding-top: 22px;
+}
+
+.module-header--gym .gym-header-actions {
+  position: static;
+  display: grid;
+  justify-items: end;
+  align-content: center;
+  gap: 10px;
+  min-width: 180px;
+}
+
+.module-header--gym .inline-add-button {
+  position: static;
+  inset: auto;
+  width: auto;
+  margin: 0;
+}
+
+.module-header--gym .gym-last-routine {
+  position: static;
+  display: grid;
+  justify-items: end;
+  gap: 3px;
+  text-align: right;
+}
+
+.module-header--gym .gym-last-routine small,
+.module-header--gym .gym-last-routine strong {
+  position: static;
+  margin: 0;
+  line-height: 1.2;
+}
+
+@media (max-width: 600px) {
+  .module-header--gym {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding-top: 20px;
+  }
+
+  .module-header--gym .gym-header-actions {
+    justify-items: stretch;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .module-header--gym .inline-add-button {
+    width: 100%;
+  }
+
+  .module-header--gym .gym-last-routine {
+    justify-items: start;
+    text-align: left;
+  }
+}
+
+/* Separación entre cabecera y botón de pendientes */
+
+.cjcc-module-actions,
+.piero-module-actions {
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+
+@media (max-width: 600px) {
+  .cjcc-module-actions,
+  .piero-module-actions {
+    margin-top: 12px;
+  }
+}

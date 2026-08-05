@@ -4,6 +4,7 @@
   description: string;
   archived: boolean;
   lastCompletedAt?: unknown;
+  lastWorkoutDurationSeconds?: number;
   createdAt?: unknown;
   updatedAt?: unknown;
 };
@@ -33,4 +34,5 @@ export type ExerciseFormData = {
   weight: number;
   restSeconds: number;
 };
+
 

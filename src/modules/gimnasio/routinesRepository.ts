@@ -115,9 +115,15 @@ export async function permanentlyDeleteRoutine(routineId: string) {
 
 export async function markRoutineAsCompleted(
   routineId: string,
+  durationSeconds: number,
 ) {
   await updateDoc(getRoutineReference(routineId), {
     lastCompletedAt: serverTimestamp(),
+    lastWorkoutDurationSeconds: Math.max(
+      0,
+      Math.trunc(durationSeconds),
+    ),
     updatedAt: serverTimestamp(),
   });
 }
+

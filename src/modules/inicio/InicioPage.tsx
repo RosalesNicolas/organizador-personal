@@ -146,6 +146,45 @@ function getCompletedTimestamp(
     : timestamp;
 }
 
+function formatWorkoutDuration(
+  totalSeconds?: number,
+) {
+  if (
+    totalSeconds === undefined ||
+    totalSeconds <= 0
+  ) {
+    return "";
+  }
+
+  const safeSeconds = Math.trunc(
+    totalSeconds,
+  );
+
+  const hours = Math.floor(
+    safeSeconds / 3600,
+  );
+
+  const minutes = Math.floor(
+    (safeSeconds % 3600) / 60,
+  );
+
+  const seconds = safeSeconds % 60;
+
+  const parts: string[] = [];
+
+  if (hours > 0) {
+    parts.push(`${hours} h`);
+  }
+
+  if (minutes > 0 || hours > 0) {
+    parts.push(`${minutes} min`);
+  }
+
+  parts.push(`${seconds} s`);
+
+  return parts.join(" ");
+}
+
 function formatLastWorkout(
   routine: GymRoutine | null,
 ) {
@@ -663,11 +702,28 @@ export function InicioPage() {
           </strong>
 
           {latestRoutine && (
-            <time className="home-gym-summary__date">
-              {formatLastWorkout(
-                latestRoutine,
-              )}
-            </time>
+            <>
+              <time className="home-gym-summary__date">
+                {formatLastWorkout(
+                  latestRoutine,
+                )}
+              </time>
+
+              {latestRoutine
+                .lastWorkoutDurationSeconds !==
+                undefined &&
+                latestRoutine
+                  .lastWorkoutDurationSeconds >
+                  0 && (
+                  <span className="home-gym-summary__duration">
+                    Duración:{" "}
+                    {formatWorkoutDuration(
+                      latestRoutine
+                        .lastWorkoutDurationSeconds,
+                    )}
+                  </span>
+                )}
+            </>
           )}
         </div>
 
@@ -678,3 +734,5 @@ export function InicioPage() {
     </section>
   );
 }
+
+

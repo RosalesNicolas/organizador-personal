@@ -139,6 +139,9 @@ export function GymWorkoutPage() {
     DEFAULT_BETWEEN_EXERCISES_REST_SECONDS,
   );
 
+  const sessionStartedAtRef =
+    useRef<number | null>(null);
+
   const automaticFinishStarted = useRef(false);
   const restFinishedNotified = useRef(false);
   const audioContextRef =
@@ -232,6 +235,9 @@ try {
           savedExercises,
         );
 
+        sessionStartedAtRef.current =
+          initialSession.startedAt;
+
         setRoutine(savedRoutine);
         setExercises(savedExercises);
         setSession(initialSession);
@@ -273,7 +279,26 @@ try {
       try {
         setFinishing(true);
 
-        await markRoutineAsCompleted(routineId);
+        const startedAt =
+          sessionStartedAtRef.current;
+
+        const durationSeconds = startedAt
+          ? Math.min(
+              MAX_WORKOUT_SECONDS,
+              Math.max(
+                0,
+                Math.floor(
+                  (Date.now() - startedAt) /
+                    1000,
+                ),
+              ),
+            )
+          : 0;
+
+        await markRoutineAsCompleted(
+          routineId,
+          durationSeconds,
+        );
 
         clearWorkoutSession(routineId);
         clearActiveRoutineId();
@@ -1007,6 +1032,9 @@ try {
     </section>
   );
 }
+
+
+
 
 
 
